@@ -1,0 +1,16 @@
+#include "libft.h"
+
+void	bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (*(s))
+	{
+		while (i < n)
+		{
+			*(char*)(s+i) = 0;
+			i++;
+		}
+	}
+}
