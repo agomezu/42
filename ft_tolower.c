@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 11:06:56 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/15 11:06:58 by agomez-u         ###   ########.fr       */
+/*   Created: 2023/01/15 11:06:42 by agomez-u          #+#    #+#             */
+/*   Updated: 2023/01/15 11:06:44 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c);
+int	tolower(int c);
 
-int	ft_toupper(int c)
+int	tolower(int c)
 {
-	if ( c >= 'a' && a <= 'z' )
-		c -= 32;		
+	if ( c >= 'A' && c <= 'Z' )
+		c += 32;
 	return (c);
 }
