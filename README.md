@@ -1,2 +1,3 @@
 # libft
-Libft (42 Barcelona)
+Hello!
+This is my 'Libft' for the school 42Barcelona.

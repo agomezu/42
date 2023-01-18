@@ -6,17 +6,19 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 11:06:42 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/15 11:06:44 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:11:34 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	tolower(int c);
+int
+	ft_tolower(int c);
 
-int	tolower(int c)
+int
+	ft_tolower(int c)
 {
-	if ( c >= 'A' && c <= 'Z' )
+	if ( c >= 'A' && c <= 'Z')
 		c += 32;
 	return (c);
 }

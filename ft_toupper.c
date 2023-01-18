@@ -6,17 +6,19 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 11:06:56 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/15 11:06:58 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:50:50 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c);
+int
+	ft_toupper(int c);
 
-int	ft_toupper(int c)
+int
+	ft_toupper(int c)
 {
-	if ( c >= 'a' && a <= 'z' )
+	if (c >= 'a' && a <= 'z')
 		c -= 32;		
 	return (c);
 }
