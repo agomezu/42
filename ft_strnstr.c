@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:16:15 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/17 19:38:28 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:22:02 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ char
 int	main(void)
 {
 	char	s1[] = "www";
-	char	s2[] = "https://www.hello.www";
-
-	printf("%s\n", ft_strnstr(s2, s1, 30));
+	char	s2[] = "ywwwhellowww";
+	char	*r = ft_strnstr(s2, s1, 9);
+	
+	printf("%s\n", r);
 	return (0);
 }
 
@@ -31,21 +32,23 @@ char
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = 0;
-	if (*(needle + i) == 0)
+	if (*(needle) == '\n')
 		return ((char *)haystack);	
-	while (*(haystack + i) && (i < len))
+	i = 0;
+	while (*(haystack + i) && ((size_t)i < len))
 	{
-		if (*(haystack + i) == *(needle + j))
+		if (*(haystack + i) == *(needle + 0))
 		{
+			j = 0;
+			while ((*(haystack + (i + j)) == *(needle + j)) && i + j < len)
+			{
+				if (*(needle + (j + 1)) == 0)
+					//
+					return	((char*)haystack + i);
+				j++;
+			}
 		}
 		i++;
-	}
-	if ((*(s1 + i) == *(s2 + i)) && i < len)
-		return ((char*)(s2 + i));
-	else
-		return (0);
 	}
 	return (0);
 }
