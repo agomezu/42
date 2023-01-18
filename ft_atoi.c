@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/18 19:15:50 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:20:57 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ int
 		res = (res * 10) + (*(str + i) - '0');
 		i++;
 	}
-	return ((int)res * sgn);
+	return ((int)(res * sgn));
 }
