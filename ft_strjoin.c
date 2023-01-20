@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 20:42:36 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/20 17:42:15 by agomez-u         ###   ########.fr       */
+/*   Created: 2023/01/20 18:08:57 by agomez-u          #+#    #+#             */
+/*   Updated: 2023/01/20 18:29:42 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void
-	ft_bzero(void *s, size_t n);
+char
+	*ft_strjoin(char const *s1, char const *s2);
 
-void
-	ft_bzero(void *s, size_t n)
+char
+	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	size_t	len;
+	char	*str;
 
-	i = 0;
-	while (i < n)
+	if (!s1 && !s2)
+		return (0);
+	else
 	{
-		*(char*)(s + i) = 0;
-		i++;
+		len = ft_strlen(s1)-1;
+		len += ft_strlen(s2)-1;
 	}
-}
+	str = (char*)malloc(sizeof(*str) * (len + 1));
+	if (!str)
+		return (0);
+	while (*(s1))
+		*(char*)(str++) = *(char*)(s1++);
+	while (*(s2))
+		*(char*)(str++) = *(char*)(s2++);
+	*(str) = '\0';
+       return (str);
+}       
