@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/18 22:50:03 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/20 08:37:58 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void		*ft_calloc(size_t count, size_t size);
 
 char		*strdup(const char *s1);
+
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
