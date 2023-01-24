@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 18:30:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/20 19:29:30 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/21 23:19:00 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@ char
 
 // function that sees if character c is inside the string set (the string to be removed from *s1
 // i need to know how to do this fucking function because i'm so lost!
+
 static int
 	ft_char_in_set(char c, char const *set)
 {
