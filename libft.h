@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/20 08:37:58 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:02:59 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 // functions without pointers
 
@@ -68,4 +69,9 @@ char		*strdup(const char *s1);
 
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 
+char		*ft_strjoin(char const *s1, char const *s2);
+
+char		*ft_strtrim(char const *s1, char const *set);
+
+char		**ft_split(char const *s, char c);
 #endif
