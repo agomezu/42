@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/26 19:17:11 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:28:49 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ static void
 	int	tmp_n;
 
 	tmp_n = 0;
+	n *= 1;
 	*(s + len) = 0;
 	--len;
-	while (n >= 0)
+	while (n > 0)
 	{
 		tmp_n = n % 10;
-		*(s + len) = (tmp_n - '0');
+		*(s + len) = (tmp_n + '0');
 		--len;	
 		if (len == 0 && sign == -1)
 			*(s + len) = '-';
