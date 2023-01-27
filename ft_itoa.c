@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/27 21:28:49 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:36:24 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ char
 		sign = 1;
 	len = ft_num_len(n);
 	if (sign == -1)
-		num = (char*)malloc(sizeof(int) * (len += 2));
+		num = (char*)malloc(sizeof(*num) * (len += 2));
 	else if (sign == 1)
-		num = (char*)malloc(sizeof(int) * (len += 1));
+		num = (char*)malloc(sizeof(*num) * (len += 1));
 	if (!num)
 		return (0);
 	ft_asign_num(num, n, len, sign);
