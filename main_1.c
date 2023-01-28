@@ -2,9 +2,8 @@
 
 int	main(void)
 {
-	int	number = 12345;
-	char	*c = ft_itoa(number);
+	char	*c = ft_itoa(-10);
 
-	printf("\n%s", c);
+	printf("And the string is: %s\n", c);
 	return (0);
 }

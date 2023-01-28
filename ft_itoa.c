@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/27 23:32:17 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/28 13:30:29 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,49 @@
 char
 	*ft_itoa(int n);
 
+static long int
+	ft_len(int n);
+
+static char
+	*ft_asign(char *x, unsigned int nbr, long int len);
+
+/* 
 static int
-	ft_num_len(int n);
+	ft_abs(int nbr);
 
-static void
-	ft_asign_num(char **s, int n, int len, int sign);
-
-static void
-	ft_asign_num(char **s, int n, int len, int sign)
+static int
+	ft_abs(int nbr)
 {
-	int	n_tmp;
+	return ((nbr < 0) ? -nbr : nbr);
+}
+*/
 
-	n_tmp = 0;
-	*(*s + len) = '\n';
-	--len;
-	while (n > 0)
+static char
+	*ft_asign(char *str, unsigned int nbr, long int len)
+{
+	while (nbr > 0)
 	{
-		if (n % 10)
-		{
-			n_tmp = n % 10;
-			*(*s + len) = (n_tmp + '0');
-		}
-		else if ((n % 10 == 0) && (n > 0 && n < 10))
-			*(*s + len) = (n + '0');
-		--len;
+
+		*(str + len--) = ('0' + (nbr % 10));
+		//printf("\nThe asigned number is %d", (nbr % 10));
+		nbr = (nbr / 10);
 	}
-	if (!sign && len == 0)
-		*(*s + len) = '-';
+	return (str);
 }
 
-static int
-	ft_num_len(int num)
+static long int
+	ft_len(int nbr)
 {
 	int	len;
 
-	len = 0;	
-	while (num != 0)
+	len = 0;
+	// !!
+	if (nbr <= 0)
+		len = 1;
+	while (nbr != 0)
 	{
-		++len;
-		num = num / 10;
+		len++;
+		nbr = nbr / 10;
 	}
 	return (len);
 }
@@ -61,28 +65,29 @@ static int
 char
 	*ft_itoa(int n)
 {
-	char	*num;
+	char	*x;
 	int	sign;
-	int	len;
+	long int	len;
+	unsigned int	number;
 
 	sign = 1;
-	if (!n)
-		return (0);
+	len = ft_len(n);	
+	// printf("The length of the number is: %ld", len);
+	x = (char *)malloc(sizeof(char) * (len + 1));
+	if (!x)
+		return (0);	
+	*(x + len--) = 0;
+	if (n == 0)
+		*(x + 0) = '0';
 	if (n < 0)
 	{
-		sign = 0;
-		n = -1;
+		sign *= -1;
+		number = n * -1;
+		*(x + 0) = '-';
 	}
-	printf("\n%d", n);
-	len = ft_num_len(n);
-	// printf("\n%d", len);
-	if (sign)
-		num = (char*)malloc(sizeof(char) * (len += 1));	
-	else if (!sign)
-		num = (char*)malloc(sizeof(char) * (len += 2));
-	//printf("\n%d", len);
-	if (!num)
-		return (0);	
-	ft_asign_num(&num, n, len, sign);
-	return (num);
+	else
+		number = n;
+	x = ft_asign(x, number, len);
+	// printf("And the string is: %s", x);
+	return (x);
 }
