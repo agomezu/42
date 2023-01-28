@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/27 21:32:11 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:15:33 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 int			ft_atoi(const char *str);
 
+void			ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+void			ft_putchar_fd(char c, int fd);
+
+void			ft_putstr_fd(char *s, int fd);
+
+void			ft_putendl_fd(char *s, int fd);
+
 // functions with pointers
 
 void		*ft_memset(void *b, int c, size_t len);
@@ -76,5 +84,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 
 char		*ft_itoa(int n);
+
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 #endif
