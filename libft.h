@@ -6,18 +6,43 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/28 17:15:33 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/29 23:33:54 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stddef.h>
+# include <string.h>
 
-// functions without pointers
+typedef struct	s_list
+{
+	void		*content;
+	struct s_list	*next;
+}			t_list;
+
+// bonus functions
+
+t_list		*ft_lstnew(void *content);
+
+void		ft_lstadd_front(t_list **lst, t_list *new);
+
+int		ft_lstsize(t_list *lst);
+
+t_list		*ft_lstlast(t_list *lst);
+
+void		ft_lstadd_back(t_list **lst, t_list *new);
+
+void		ft_lstdelone(t_list *lst, void (*del)(void*));
+
+
+
+// functions without pointers 
+// – part 1 and 2
 
 int			ft_isalpha(int c);
 
@@ -55,7 +80,10 @@ void			ft_putstr_fd(char *s, int fd);
 
 void			ft_putendl_fd(char *s, int fd);
 
-// functions with pointers
+void			ft_putnbr_fd(int n, int fd);
+
+// functions with pointers 
+// – part 1 and 2
 
 void		*ft_memset(void *b, int c, size_t len);
 

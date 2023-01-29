@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/28 13:30:29 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/01/28 20:11:52 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ char
 	*ft_itoa(int n)
 {
 	char	*x;
-	int	sign;
+	// int	sign;
 	long int	len;
 	unsigned int	number;
 
-	sign = 1;
+	// sign = 1;
 	len = ft_len(n);	
 	// printf("The length of the number is: %ld", len);
 	x = (char *)malloc(sizeof(char) * (len + 1));
@@ -81,7 +81,7 @@ char
 		*(x + 0) = '0';
 	if (n < 0)
 	{
-		sign *= -1;
+		// sign *= -1;
 		number = n * -1;
 		*(x + 0) = '-';
 	}

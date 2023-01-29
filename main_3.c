@@ -5,11 +5,11 @@
 int	main(void)
 {
 	int	fd;
-	char	s[] = "hello world";
+	int	n = -123456789;
+	//char	s[] = "hello world";
 
 	fd = open("main3.txt", O_WRONLY | O_CREAT, 0644);
-	ft_putendl_fd(s, fd);
-	ft_putendl_fd(s, fd);
+	ft_putnbr_fd(n, fd);
 	close(fd);
 	return (0);
 }
