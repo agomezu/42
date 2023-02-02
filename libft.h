@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/29 23:33:54 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:59:41 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
 
+void		ft_lstclear(t_list **lst, void (*del)(void*));
 
+void		ft_lstiter(t_list *lst, void (*f)(void *));
+
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // functions without pointers 
 // – part 1 and 2
