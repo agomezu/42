@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:29:51 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/18 21:18:30 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:57:10 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int
 	ft_isalnum(int c)
 {
 	if (ft_isalpha(c) || ft_isdigit(c))
-		return true;
+		return (1);
 	else
-		return false;
+		return (0);
 }

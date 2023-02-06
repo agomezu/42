@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:25:47 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/18 20:28:19 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:31:18 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int
 	ft_isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return true;
+		return (1);
 	else
-		return false;
-}		
+		return (0);
+}
