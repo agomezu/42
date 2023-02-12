@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 08:29:25 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/12 21:10:35 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:16:23 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ char
 	*ft_strrchr(const char *s, int c)
 {
 	int	len;
-
+	
+	if (!ft_isascii(c))
+		return ((char*)NULL);
 	len = ft_strlen(s) + 1;
 	while (len >= 0)
 	{
