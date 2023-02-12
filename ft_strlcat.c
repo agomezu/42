@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 23:04:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/18 21:05:07 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:22:21 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,29 @@ size_t
 size_t
 	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t j;
-	size_t len;
+	size_t	dst_len;
+	size_t	src_len;
 
-	i = ft_strlen(src);
-	j = ft_strlen(dst);
-	len = i + j;
-
-	if (dstsize < 1)
-		return (len);	
-	i = 0;
-	while (j < dstsize)	
-		*(char*)(dst + j++) = *(char*)(src + i++);
-	*(dst + ++j) = 0;
-	return (len);
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (dstsize <= dst_len)
+		return (dstsize + src_len);
+	while (*(src) && dst_len + 1 < dstsize)
+	{
+		*(dst + dst_len) = *(src);
+		dst_len++;
+		src++;
+	}
+	*(dst + dst_len) = '\0';
+	return (ft_strlen(dst) + ft_strlen(src));
 }
+/*
+int	main(void)
+{
+	char	a[] = "hello world";
+	char	b[] = "12345";
+	int	n = ft_strlcat(a, b, 17);
+
+	printf("%d\n%s\n", n, a);
+	return (1);
+} */
