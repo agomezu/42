@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 08:29:25 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/12 21:27:11 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:27:54 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char
 		s++;
 	}
 	if (c == '\0')
-		return ((char*)++s);
+		return ((char*)s);
 	if (ret)
 		return ((char*)ret);
 	else	
