@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/07 18:32:09 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/11 23:23:12 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int
 	size_t	i;
 	unsigned int	sgn;
 	int		res;
+
 
 	if (!str)
 		return (0);
