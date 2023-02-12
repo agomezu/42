@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:45:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/12 21:39:24 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:42:01 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int
 	size_t	i;
 
 	i = 0;
-	while (*(unsigned char*)(s1 + i) && *(unsigned char*)(s2 + i) && i <= n)
+	while (i < n)
 	{
 		if (*(unsigned char*)(s1 + i) != *(unsigned char*)(s2 + i))
 			return ((int)(*(unsigned char*)(s1 + i) - *(unsigned char*)(s2 + i)));
