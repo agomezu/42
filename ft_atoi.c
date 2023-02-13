@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/11 23:23:12 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:08:14 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ int
 	if (!str)
 		return (0);
 	i = 0;
-	while (*(str + i) == ' ' && *(str + i) >= 9 && *(str + i) <= 13)
-		i++;
-	sgn = 1;
+	sgn = 0;
 	res = 0;
-	if (*(str) == '+')
+	while (*(str + i) < '0' && *(str + i) > '9' && *(str + i) != '+' && 
+			*(str + i) != '-')
 		i++;
-	else if (*(str) == '-')
+	if (*(str + i) == '+')
+		i++;
+	else if (*(str + i) == '-')
 	{
 		sgn = -1;
 		++i;
@@ -40,7 +41,7 @@ int
 	while (*(str + i) >= '0' && *(str + i) <= '9')
 	{
 		res = (res * 10) + (*(str + i) - '0');
-		i++;
+		++i;
 	}
 	return ((int)(res * sgn));
 }
