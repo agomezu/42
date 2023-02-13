@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:16:15 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/12 22:21:13 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:56:25 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,32 @@ char
 {	
 	size_t	i;
 	size_t	j;
+	char	*hay;
 
-	if (*(needle + 0) == '\0')
-		return ((char*)haystack);	
+	if (*(needle + 0) == '\0' || haystack == needle)
+		return ((char*)haystack);
 	i = 0;
-	while (*(haystack + i) && i < len)
+	hay = (char*)haystack;
+	while (*(hay + i) && i < len)
 	{
 		j = 0;
-		while (*(haystack + i) != *(needle + j) && *(needle + j))
-			j++;
-		if (*(haystack + i) == *(needle + j))
-			return ((char*)(haystack + i));
-		i++;
+		while (*(hay + i + j) != '\0' && *(needle + j) != '\0' && 
+				*(hay + i + j) == *(needle + j) && i + j < len)
+			++j;
+		if (j == ft_strlen(needle) && i + j <= len)
+			return ((char*)(hay + i));
+		++i;
 	}
 	return ((char*)NULL);
 }
+/*
+int	main(void)
+{
+	char	little[] = "alejandromagno.emperor";
+	char	big[] = "mango";
+
+	char *ptr = ft_strnstr(big, little, 22);
+	printf("%s\n", ptr);
+	return (0);
+}	
+*/
