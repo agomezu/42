@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:16:15 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/13 17:56:25 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:59:39 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,4 @@ char
 	}
 	return ((char*)NULL);
 }
-/*
-int	main(void)
-{
-	char	little[] = "alejandromagno.emperor";
-	char	big[] = "mango";
 
-	char *ptr = ft_strnstr(big, little, 22);
-	printf("%s\n", ptr);
-	return (0);
-}	
-*/

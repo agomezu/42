@@ -6,23 +6,29 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:31 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/24 18:02:42 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:24:43 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+char
+	*ft_strtrim(char const *s1, char const *set);
+
+static	int
+	char_in_set(char c, char const *set);
+
 static int
-	ft_char_in_set(char c, const char *set)
+	char_in_set(char c, char const *set)
 {
 	size_t	i;
 
 	i = 0;
 	while (*(set + i))
 	{
-		if (c == *(set + i))
+		if (*(set + i) == c)
 			return (1);
-		i++;
+		++i;
 	}
 	return (0);
 }
@@ -30,27 +36,29 @@ static int
 char
 	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
 	size_t	start;
-	size_t	end;	
-	char	*str;
+	size_t	end;
+	char	*ptr;	
 
-	if (!s1 || !set)
-		return ((char*)s1);
-	while (*(s1 + start) && ft_char_in_set(*(s1 + start), set))
-	       start++;	
-	end = (ft_strlen(s1) - 1);
-	while (*(s1 + end) && ft_char_in_set(*(s1 + end), set))
-		end--;
-	str = (char*)malloc(sizeof(*s1) * (end - start + 1));
-	if (!str)
-		return (0);
-	i = 0;
-	while (start < end)
+	start = 0;
+	while (*(s1 + start))
 	{
-		*(str + i) = *(s1 + start++);
-		i++;
+		if (!char_in_set(*(s1 + start), set))
+			break ;
+		start++;
 	}
-	*(str + i) = '\0';
-	return (str);
+	end = ft_strlen(s1);
+	while (end > start)
+	{
+		end--;
+		if (!char_in_set(*(s1 + end), set))
+			break ;
+	}
+	end++;
+	ptr = (char*)malloc(sizeof(char) * (end - start) + 1);
+	if (!ptr)
+		return (0);
+	else
+		ft_strlcpy(ptr, (s1 + start), (end - start) + 1);
+	return (ptr);
 }

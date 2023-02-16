@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/13 18:08:14 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:33:46 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ int
 	unsigned int	sgn;
 	int		res;
 
-
-	if (!str)
+	if (!str || str == NULL)
 		return (0);
 	i = 0;
-	sgn = 0;
+	sgn = 1;
 	res = 0;
-	while (*(str + i) < '0' && *(str + i) > '9' && *(str + i) != '+' && 
-			*(str + i) != '-')
+	if (*(str + i) == '0' && (*(str + 1) == ' ' || *(str + 1) == 0))
+		return ((int)0);
+	while (*(str + i) == '0' || (*(str + i) == ' ' || *(str + i) == '\n') 
+		       || *(str + i) == '\t' || *(str + i) == '\r' 
+		       || *(str + i) == '\v' || *(str + i) == '\v'
+		       || *(str + i) == '\f')
 		i++;
 	if (*(str + i) == '+')
-		i++;
+		++i;
 	else if (*(str + i) == '-')
 	{
 		sgn = -1;
@@ -45,3 +48,13 @@ int
 	}
 	return ((int)(res * sgn));
 }
+/*
+int	main(void)
+{
+	char	num[] = "455:5";
+
+	printf("%d\n", ft_atoi(num));
+	return (0);
+}
+*/
+
