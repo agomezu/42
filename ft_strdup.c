@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:59:42 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/07 18:57:29 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/18 11:11:59 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char
 
 	if (!s1)
 		return (0);
-	str = (char*)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
+	str = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
 	i = 0;
 	if (!str)
 		return (0);

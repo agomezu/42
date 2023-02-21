@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:48:21 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/08 18:17:33 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/18 11:29:08 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@ void
 void	
 	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*d;	
+	char	*d;
 	const char	*s;
 
 	d = dst;
 	s = src;
-	if (d == s) return (dst);
+	if (d == s)
+		return (dst);
 	if (d < s)
-		while (len--) *d++ = *s++;
+		while (len--)
+			*d++ = *s++;
 	else
 	{
 		d += len;
 		s += len;
-		while (len--) *--d = *--s;
+		while (len--)
+			*--d = *--s;
 	}
 	return (dst);
 }

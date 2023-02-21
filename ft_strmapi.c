@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:37:51 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/28 14:09:04 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/18 10:35:52 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char
 	i = 0;
 	if (!s || !f)
 		return (0);
-	res = (char*)malloc(sizeof(char) * (ft_strlen(s) + i));
+	res = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!res)
 		return (0);
 	while (*(s + i))
 	{
 		*(res + i) = f(i, *(s + i));
-		i++;
+		++i;
 	}
 	*(res + i) = 0;
 	return (res);
