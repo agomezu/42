@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:31 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/16 18:24:43 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:11:11 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char
 			break ;
 	}
 	end++;
-	ptr = (char*)malloc(sizeof(char) * (end - start) + 1);
+	ptr = (char *)malloc(sizeof(char) * (end - start) + 1);
 	if (!ptr)
 		return (0);
 	else

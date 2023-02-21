@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:05:38 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/15 20:31:20 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:09:55 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char
 	size_t	j;
 	char	*str;
 
-	str = (char*)malloc(sizeof(char) * len + 1);
+	str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -39,11 +39,3 @@ char
 	*(str + j) = '\0';
 	return (str);
 }
-
-/*int	main(void)
-{
-	char	src[] = "honey_";
-
-	printf("The original string is: %s\nAnd the result after ft_substr() is: %s\n", src, ft_substr(src, 1,3));
-	return (0);
-}*/

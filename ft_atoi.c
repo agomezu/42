@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/15 18:33:46 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:52:31 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int
 	ft_atoi(const char *str);
-
 int
 	ft_atoi(const char *str)
 {
-	size_t	i;
+	size_t		i;
 	unsigned int	sgn;
 	int		res;
 
@@ -27,12 +26,11 @@ int
 	i = 0;
 	sgn = 1;
 	res = 0;
-	if (*(str + i) == '0' && (*(str + 1) == ' ' || *(str + 1) == 0))
+	if (*(str + 0) == '0' && (*(str + 1) == ' ' || *(str + 1) == 0))
 		return ((int)0);
-	while (*(str + i) == '0' || (*(str + i) == ' ' || *(str + i) == '\n') 
-		       || *(str + i) == '\t' || *(str + i) == '\r' 
-		       || *(str + i) == '\v' || *(str + i) == '\v'
-		       || *(str + i) == '\f')
+	while (*(str + i) == '0' || *(str + i) == ' ' || *(str + i) == '\n' \
+		|| *(str + i) == '\t' || *(str + i) == '\r' || *(str + i) == '\v' \
+		|| *(str + i) == '\f')
 		i++;
 	if (*(str + i) == '+')
 		++i;
@@ -48,13 +46,3 @@ int
 	}
 	return ((int)(res * sgn));
 }
-/*
-int	main(void)
-{
-	char	num[] = "455:5";
-
-	printf("%d\n", ft_atoi(num));
-	return (0);
-}
-*/
-

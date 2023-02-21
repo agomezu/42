@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:30:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/17 18:13:07 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:35:02 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ char
 {
 	char	**lst;
 	size_t	word_len;
-	int	i;
+	int		i;
 
-	lst = (char**)malloc(sizeof(char*) * (ft_count(s, c) + 1));
+	lst = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
 	if (!lst)
 		return (0);
 	i = 0;
