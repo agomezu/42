@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:07:24 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/22 20:39:48 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:50:14 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void
 	size_t	i;
 
 	if (s == NULL)
-		s;
+		return (0);
 	i = 0;
 	while (i < n)
 	{

@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:29:51 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/03 17:57:10 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:33:40 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int
-	ft_isalnum(int c);
 
 int
 	ft_isalnum(int c)

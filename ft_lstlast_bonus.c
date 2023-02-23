@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:46:48 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 18:08:22 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:44:12 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-t_list
-	*ft_lstlast(t_list *lst);
 
 t_list
 	*ft_lstlast(t_list *lst)

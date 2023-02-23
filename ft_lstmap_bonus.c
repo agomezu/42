@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:32 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 07:15:29 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:45:58 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-t_list
-	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 t_list
 	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))

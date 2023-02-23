@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 11:06:42 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 07:59:41 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:38:32 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int
-	ft_tolower(int c);
 
 int
 	ft_tolower(int c)

@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 23:29:26 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 08:08:38 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:45:23 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void
-	ft_lstclear(t_list **lst, void (*del)(void*));
 
 void
 	ft_lstclear(t_list **lst, void (*del)(void*))

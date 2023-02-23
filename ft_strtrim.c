@@ -6,17 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:31 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 18:11:11 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:41:03 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char
-	*ft_strtrim(char const *s1, char const *set);
-
-static	int
-	char_in_set(char c, char const *set);
 
 static int
 	char_in_set(char c, char const *set)

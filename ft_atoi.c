@@ -6,31 +6,25 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/22 20:41:49 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:16:14 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int
-	ft_atoi(const char *str);
-int
 	ft_atoi(const char *str)
 {
-	size_t		i;
+	size_t			i;
 	unsigned int	sgn;
-	int		res;
+	int				res;
 
 	if (!str)
-		str;
+		return (0);
 	i = 0;
 	sgn = 1;
 	res = 0;
-	if (*(str + 0) == '0' && (*(str + 1) == ' ' || *(str + 1) == 0))
-		return ((int)0);
-	while (*(str + i) == '0' || *(str + i) == ' ' || *(str + i) == '\n' \
-		|| *(str + i) == '\t' || *(str + i) == '\r' || *(str + i) == '\v' \
-		|| *(str + i) == '\f')
+	while (*(str + i) == ' ' || (*(str + i) >= '\t' && *(str + i) <= '\r'))
 		i++;
 	if (*(str + i) == '+')
 		++i;

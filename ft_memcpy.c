@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:46:39 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 08:07:47 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:37:24 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void
-	*ft_memcpy(void *dst, const void *src, size_t n);
 
 void	
 	*ft_memcpy(void *dst, const void *src, size_t n)

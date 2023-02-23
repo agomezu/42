@@ -6,20 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 08:07:06 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:41:47 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char
-	*ft_itoa(int n);
-
-static long int
-	ft_len(int n);
-
-static char
-	*ft_asign(char *x, unsigned int nbr, long int len);
 
 static char
 	*ft_asign(char *str, unsigned int nbr, long int len)

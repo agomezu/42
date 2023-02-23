@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:42:36 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 07:34:27 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:36:47 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void
-	ft_bzero(void *s, size_t n);
 
 void
 	ft_bzero(void *s, size_t n)

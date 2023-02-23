@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:35:06 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/22 20:27:23 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:39:00 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int
-	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int
 	ft_strncmp(const char *s1, const char *s2, size_t n)
