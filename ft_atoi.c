@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:23:27 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 18:52:31 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:41:49 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int
 	unsigned int	sgn;
 	int		res;
 
-	if (!str || str == NULL)
-		return (0);
+	if (!str)
+		str;
 	i = 0;
 	sgn = 1;
 	res = 0;

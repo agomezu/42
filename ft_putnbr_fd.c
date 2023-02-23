@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 19:59:28 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/01/28 20:08:17 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:15:09 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@ void
 {
 	char	*s;
 
-	s = ft_itoa(n);
-	ft_putstr_fd(s, fd);
+	if (!fd)
+		return ;
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
+	{
+		if (n <0)
+		{
+			ft_putchar_fd('-', fd);
+			n *= -1;
+		}
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		else if (n <= 9)
+		{
+			ft_putchar_fd(n + '0', fd);
+			return ;
+		}
+		ft_putchar_fd(n % 10 + '0', fd);
+	}
 }
