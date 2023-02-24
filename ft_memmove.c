@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:48:21 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:37:39 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:07:26 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,12 @@ void
 	char		*d;
 	const char	*s;
 
-	d = dst;
-	s = src;
-	if (d == s)
-		return (dst);
-	if (d < s)
+	d = (char *)dst;
+	s = (char *)src;
+	if (d > s)
 		while (len--)
-			*d++ = *s++;
+			*(d + len) = *(s + len);
 	else
-	{
-		d += len;
-		s += len;
-		while (len--)
-			*--d = *--s;
-	}
-	return (dst);
+		ft_memcpy(d, s, len);
+	return (d);
 }
