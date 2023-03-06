@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:34:40 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/01 09:43:01 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:43:12 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t
 	size_t	i;
 
 	i = 0;
-	while (*(s + i))
+	while (s[i])
 		i++;
 	return (i);
 }
