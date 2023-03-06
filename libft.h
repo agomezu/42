@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/06 17:12:04 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:32:38 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ int			ft_isascii(int c);
 
 int			ft_isprint(int c);
 
-/*
 size_t		ft_strlen(const char *s);
 
 void		ft_bzero(void *s, size_t n);
 
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
-
+/*
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 int			ft_toupper(int c);
