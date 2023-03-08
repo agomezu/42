@@ -28,15 +28,16 @@ size_t
 		return (dstsize + s_length);
 	destination = (unsigned char *)dst;
 	source = (unsigned const char *)src;
-	ft_memmove(destination + d_length, source + 0, dstsize);
+	ft_memmove(destination + d_length, source + 0, dstsize - 1);
 	/* while (source[i] && (d_length + 1) < dstsize)
 	{
 		destination[d_length] = source[i];
 		d_length += 1;
 		++i;
 	}*/
-	destination[dstsize] = '\0';
-	return (ft_strlen(dst) + ft_strlen(src));
+	if (!destination[dstsize])
+		destination[dstsize] = '\0';
+	return (d_length + s_length);
 }
 
 // TEST

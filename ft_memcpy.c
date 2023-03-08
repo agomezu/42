@@ -19,8 +19,6 @@ void
 	unsigned char	*destination;
 	unsigned const char	*source;
 
-	if (!src)
-		return (0);
 	destination = (unsigned char *)dst;
 	source = (unsigned const char *)src;
 	if (n == 0)
