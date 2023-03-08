@@ -24,26 +24,22 @@ size_t
 	source = (const char *)src;
 	if (dstsize)
 	{
-		while (source[i] && i < (dstsize - 1))
-		{
-			destination[i] = source[i];
-			++i;
-		}
-		destination[i] = 0;
+		ft_memcpy(destination, source, dstsize);
+		destination[dstsize] = 0;
 	}
 	return (ft_strlen(source));
 }
 
 // TEST
-/*
-int	main(void)
+/* int	main(void)
 {
 	char	src[] = "this is the string to copy!";
 	char	dst[] = "destination variable";
 	int	n;
 
 	printf("\n\n-> SOURCE: %s\n-> DESTINATION: %s\n", src, dst);
-	n = (int)ft_strlcpy(dst, src, n);
+	n = (int)ft_strlen(src);
+	ft_strlcpy(dst, src, n);
 	printf("\nTotal length of source: %d\n", n);
 	// including NUL in dstsize
 	printf("\nAfter using ft_strlcpy with %d characters:\n-> %s\n\n\n", n, dst);

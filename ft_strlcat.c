@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 23:04:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/06 22:58:05 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:38:11 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,60 @@
 size_t
 	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned char	destination;
-	unsigned const char	source;
-	size_t	d_len;
-	size_t	s_len;
+	unsigned char	*destination;
+	unsigned const char	*source;
+	size_t	d_length;
+	size_t	s_length;
+	size_t	i;
 
+	d_length = ft_strlen(dst);
+	s_length = ft_strlen(src);
+	i = 0;
+	if (dstsize <= d_length)
+		return (dstsize + s_length);
 	destination = (unsigned char *)dst;
 	source = (unsigned const char *)src;
-	d_len = ft_strlen(dst);
-	s_len = ft_strlen(src);
-	if (dstsize <= d_len)
-		return (dstsize + s_len);
-	while (*(src) && dst_len + 1 < dstsize)
+	ft_memmove(destination + d_length, source + 0, dstsize);
+	/* while (source[i] && (d_length + 1) < dstsize)
 	{
-		*(dst + dst_len) = *(src);
-		dst_len++;
-		src++;
-	}
-	*(dst + dst_len) = '\0';
+		destination[d_length] = source[i];
+		d_length += 1;
+		++i;
+	}*/
+	destination[dstsize] = '\0';
 	return (ft_strlen(dst) + ft_strlen(src));
 }
 
 // TEST
+/*int	main(void)
+{
+	char	src[] = "this is the source to copy";
+	char	dst[] = "destination var... ";
+
+	printf("\n\nWe start with two srings:\n"
+		"-----------------------------------------\n"
+		"-> %s\n"
+		"-> %s\n", src, dst);
+	size_t	n = 33;
+	printf("\n\nWe are using ft_strlcat() with a destination\n"
+		"variable of %ld characters (one for NUL).", n);
+	printf("\n\nThe return value of function is: %ld",
+		ft_strlcat(dst, src, n));
+	printf("\n\nAnd the result of destination variable is:\n-> %s\n",
+		dst);
+	printf("\n\n");
+	return (0);
+}
+*/
 
 // DESCRIPTION
-/* strlcat() appends string src to the end of dst.  It will append at most
- * dstsize - strlen(dst) - 1 characters.  It will then NUL-terminate, unless
- * dstsize is 0 or the original dst string was longer than dstsize (in practice
- * this should not happen as it means that either dstsize is incorrect or that
- * dst is not a proper string).
+/* The strlcat() function appends the NUL-terminated string src to the end
+ * of dst.  It will append at most size - strlen(dst) - 1 bytes, NUL-termi‐
+ * nating the result.
  *
- * If the src and dst strings overlap, the behavior is undefined.
- *
- * Like snprintf(3), the strlcpy() and strlcat() functions return the total
- * length of the string they tried to create.
- * For strlcat() that means the initial length of dst plus the
- * length of src.
- *
- * If the return value is >= dstsize, the output string has been truncated.
- * is the caller's responsibility to handle this.
+ * The strlcpy() and strlcat() functions return the total length of the
+ * string they tried to create.  For strlcpy() that means the length of
+ * src. For strlcat() that means the initial length of dst plus the length
+ * of src.  While this may seem somewhat confusing, it was done to make
+ * truncation detection simple.
  */
