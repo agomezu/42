@@ -18,23 +18,23 @@ char
 char
 	*ft_strrchr(const char *s, int c)
 {
-	const char	*string;
+	const char	*p1;
 	char	character;
 	char	*ret;
 	int		i;
 
-	string = (const char *)s;
+	p1 = (const char *)s;
 	character = (char)c;
 	ret = 0;
 	i = 0;
-	while (string[i])
+	while (p1[i])
 	{
-		if (string[i] == character)
-			ret = (char *)&string[i];
+		if (p1[i] == character)
+			ret = (char *)&p1[i];
 		++i;
 	}
 	if (character == '\0')
-		return ((char *)&string[i]);
+		return ((char *)&p1[i]);
 	else if (ret)
 		return ((char *)ret);
 	else

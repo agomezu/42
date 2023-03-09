@@ -16,21 +16,21 @@ int
 	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
-	const char	*string_1;
-	const char	*string_2;
+	const char	*p1;
+	const char	*p2;
 
 	i = 0;
-	string_1 = (const char*)s1;
-	string_2 = (const char*)s2;
-	while (string_1[i] && string_2[i] && i < n)
+	p1 = (const char*)s1;
+	p2 = (const char*)s2;
+	while (p1[i] && p2[i] && i < n)
 	{
-		if (string_1[i] != string_2[i])
-			return((int)(string_1[i] - string_2[i]));
+		if (p1[i] != p2[i])
+			return((int)(p1[i] - p2[i]));
 		++i;
 	}
 	if (i == n)
 		return (0);
-	return ((int)(string_1[i]- string_2[i]));
+	return ((int)(p1[i]- p2[i]));
 }
 
 // TEST
