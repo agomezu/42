@@ -15,17 +15,17 @@
 size_t
 	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*destination;
-	const char	*source;
+	char	*d_ptr;
+	const char	*s_ptr;
 
-	destination = (char *)dst;
-	source = (const char *)src;
+	d_ptr = (char *)dst;
+	s_ptr = (const char *)src;
 	if (dstsize)
 	{
-		ft_memcpy(destination, source, dstsize);
-		destination[dstsize] = 0;
+		ft_memcpy(d_ptr, s_ptr, dstsize);
+		d_ptr[dstsize] = 0;
 	}
-	return (ft_strlen(source));
+	return (ft_strlen(src));
 }
 
 // TEST

@@ -68,3 +68,20 @@ void
  * ful call to malloc() with a size of zero, or by a successful  call  to
  * calloc() with nmemb or size equal to zero.
  */
+
+// DETAILS
+/* When you call calloc, it allocates a block of memory large enough to 
+ * hold num elements of size size. It then initializes all the bytes in the
+ * allocated block to zero. This ensures that the memory block is in a 
+ * consistent state before it is used in the program.
+ *
+ * calloc is similar to the malloc function, which also allocates a block of
+ * memory. However, malloc does not initialize the memory, so the
+ * contents of the memory block are undefined. If you need to initialize the
+ * memory to a specific value, you can use memset or memcpy functions
+ * after allocating memory with malloc.
+ *
+ * In summary, calloc is a function that allocates memory for an array of 
+ * elements and initializes them to zero. It is useful for initializing dynamic
+ * memory structures, such as arrays or structures, before using them in
+ * your program.

@@ -18,28 +18,34 @@ char
 	size_t	i;
 	char	*ptr;
 
-	if (!s1)
+	if (!s)
 		return (NULL);
-	*ptr = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
+	ptr = (char *)malloc(sizeof(s) * (ft_strlen(s) + 1));
 	i = 0;
-	if (!str)
+	if (!ptr)
 		return (0);
-	while (s[i++])
+	while (s[i])
+	{
 		ptr[i] = s[i];
-	s[i] = 0;
+		++i;
+	}
+	ptr[i] = '\0';
 	return (ptr);
 }
 
 // TEST
-int	main(void)
-
-// TEST
-int	main(void)
+/* int	main(void)
 {
-	return 0;
-}{
-	return 0;
+	char	**ptr;
+	char	str[] = "This is a whole string";
+
+	printf("ft_strdup() test:\nstring used as pointer -> \t%s\n", str);
+	printf("Now calling the function and returning the value...\n");
+	ptr = (char **)ft_strdup(str);
+	printf("\n\nResult:\t\t\t\t%s\n\n", (char *)ptr);
 }
+*/
+
 // DESCRIPTION
 /* The strdup() function returns a pointer to a new string which is a du‐
  * plicate of the string s.  Memory for the new string is  obtained  with
