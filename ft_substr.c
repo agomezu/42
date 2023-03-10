@@ -21,7 +21,7 @@ char
 
 	if (start > ft_strlen(s))
 		len = 0;
-	if (len > ft_strlen(s + start));
+	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
@@ -31,18 +31,22 @@ char
 }
 
 // TEST
-int	main()
+/* int	main()
 {
 	char	str[] = "copy this, please";
 	char	*ptr;
 
 	printf("String to copy with ft_substr():\n%s\n", str);
 	printf("Executing the function...\n\n\n");
-	ptr = (char *)ft_substr(str, 2, 1);
+	ptr = (char *)ft_substr(str, 2, 5);
 	printf("Result:\n%s\n", ptr);
 	return (0);
 }
+*/
 
 // DESCRIPTION
-/*
+/* Allocates (with malloc(3)) and returns a substring
+ * from the string ’s’.
+ * The substring begins at index ’start’ and is of
+ * maximum size ’len’.
  */

@@ -15,27 +15,27 @@
 size_t
 	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned char	*destination;
-	unsigned const char	*source;
-	size_t	d_length;
-	size_t	s_length;
+	unsigned char	*d_ptr;
+	unsigned const char	*s_ptr;
+	size_t	d_len;
+	size_t	s_len;
 
-	d_length = ft_strlen(dst);
-	s_length = ft_strlen(src);
-	if (dstsize <= d_length)
-		return (dstsize + s_length);
-	destination = (unsigned char *)dst;
-	source = (unsigned const char *)src;
-	ft_memmove(destination + d_length, source + 0, dstsize - 1);
+	d_len = ft_strlen(dst);
+	s_len = ft_strlen(src);
+	if (dstsize <= d_len)
+		return (dstsize + s_len);
+	d_ptr = (unsigned char *)dst;
+	s_ptr = (unsigned const char *)src;
+	ft_memmove(d_ptr + d_len, s_ptr + 0, dstsize - 1);
 	/* while (source[i] && (d_length + 1) < dstsize)
 	{
 		destination[d_length] = source[i];
 		d_length += 1;
 		++i;
 	}*/
-	if (!destination[dstsize])
-		destination[dstsize] = '\0';
-	return (d_length + s_length);
+	if (!d_ptr[dstsize])
+		d_ptr[dstsize] = '\0';
+	return (d_len + s_len);
 }
 
 // TEST
