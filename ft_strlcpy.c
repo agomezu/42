@@ -15,11 +15,9 @@
 size_t
 	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
 	char	*destination;
 	const char	*source;
 
-	i = 0;
 	destination = (char *)dst;
 	source = (const char *)src;
 	if (dstsize)

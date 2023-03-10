@@ -26,18 +26,18 @@ int
 	ptr = str;
 	sgn = 1;
 	res = 0;
-	while (str[i] == ' ' || str[i] >= '\t' && str[i] <= '\r')
+	while (ptr[i] == ' ' || (ptr[i] >= '\t' && ptr[i] <= '\r'))
 		++i;
-	if (str[i] == '+')
+	if (ptr[i] == '+')
 		++i;
-	else if (str[i] == '-')
+	else if (ptr[i] == '-')
 	{
 		sgn = -1;
 		++i;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ptr[i] >= '0' && ptr[i] <= '9')
 	{
-		res = (res * 10) + (str[i] - '0');
+		res = (res * 10) + (ptr[i] - '0');
 		++i;
 	}
 	return ((int)(res * sgn));

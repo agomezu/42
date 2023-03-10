@@ -19,11 +19,9 @@ size_t
 	unsigned const char	*source;
 	size_t	d_length;
 	size_t	s_length;
-	size_t	i;
 
 	d_length = ft_strlen(dst);
 	s_length = ft_strlen(src);
-	i = 0;
 	if (dstsize <= d_length)
 		return (dstsize + s_length);
 	destination = (unsigned char *)dst;
