@@ -19,18 +19,24 @@
 # include <stddef.h>
 # include <string.h>
 
-// BONUS 
-// STRUCTURE PROTOYPE 
+// BONUS PART
+/* The members of the t_list struct are:
+ * content: The data contained in the node
+ * void * allows to store any kind of data.
+ * next: The address of the next node,
+ * or NULL if the next node is the last one.
+ */
 
-/*
- *
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }			t_list;
 
-// bonus functions
+// BONUS: FUNCTIONS
+/* Functions of the bonus part that work
+ * with the typedef struct s_list structure.
+ */
 
 t_list		*ft_lstnew(void *content);
 
@@ -49,13 +55,9 @@ void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-*/
 
-// PART ONE
-// LIBC FUNCTIONS 
-
-/* library description in 2-3 lines…
- */
+// PART ONE: LIBC FUNCTIONS 
+/* library description in 2-3 lines… */
 
 int			ft_isalpha(int c);
 

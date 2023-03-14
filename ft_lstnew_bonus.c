@@ -15,19 +15,35 @@
 t_list
 	*ft_lstnew(void *content)
 {
-	t_list	*x;
+	t_list	*newlst;
 
-	x = (t_list *)malloc(sizeof(*x));
-	if (!x)
+	newlst = (t_list *)malloc(sizeof(*newlst));
+	if (!newlst)
 		return (0);
-	x->content = content;
-	x->next = NULL;
-	return (x);
+	newlst->content = content;
+	newlst->next = NULL;
+	return (newlst);
 }
+
+// TEST
+/*int	main(void)
+{
+	char	str[] = "element of a list";
+	t_list	*newlst;
+
+	printf("Let's create a new node.");
+	newlst = ft_lstnew(str);
+	if (newlst)
+	{
+		printf("\nDone.\nNow let's call it...\n");
+		printf("-> %s\n", (char *)newlst->content);
+	}
+	return (0);
+}*/
 
 // DESCRIPTION
 /* Allocates (with malloc(3)) and returns a new node.
-/* The member variable ’content’ is initialized with
-/* the value of the parameter ’content’. The variable
-/* ’next’ is initialized to NULL.
-/*
+ * The member variable ’content’ is initialized with
+ * the value of the parameter ’content’. The variable
+ * ’next’ is initialized to NULL.
+ */
