@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:07:24 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:50:14 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:06:27 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void
 	while (i < n)
 	{
 		if (p1[i] == character)
-			return ((char *)&p1[i]);
+			return ((void *)(p1 + i));
 		++i;
 	}
-	return (0);
+	return ((void *)0);
 }
 
 // TEST

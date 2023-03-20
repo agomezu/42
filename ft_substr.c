@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:05:38 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:51:33 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:09:11 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 char
 	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
 	char	*str;
 
 	if (start > ft_strlen(s))

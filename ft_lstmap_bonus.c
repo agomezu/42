@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:32 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:45:58 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:07:38 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,13 @@ t_list
 	new->next = NULL;
 	return (list);
 }
+
+// TEST
+
+// DESCRIPTION
+/* Iterates the list ’lst’ and applies the function
+ * ’f’ on the content of each node. Creates a new
+ * list resulting of the successive applications of
+ * the function ’f’. The ’del’ function is used to
+ * delete the content of a node if needed.
+ */

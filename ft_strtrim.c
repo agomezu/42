@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:31 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:41:03 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:09:34 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char
 	size_t	start;
 	size_t	end;
 	char	*ptr;
-	char	*newstr;	
 
 	start = 0;
 	ptr = (char *)s1;
