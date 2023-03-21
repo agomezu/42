@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:31 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/20 21:09:34 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:50:45 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static int
 	{
 		if (set[i] == c)
 			return (1);
-		else
-			++i;
+		++i;
 	}
 	return (0);
 }
@@ -36,28 +35,15 @@ char
 	char	*ptr;
 
 	start = 0;
-	ptr = (char *)s1;
-	while (ptr[start])
-	{
-		if (!is_char_set(ptr[start], set))
-			break ;
-		start++;
-	}
-	end = ft_strlen(ptr);
-	while (end > start)
-	{
+	end = ft_strlen(s1);
+	while (is_char_set(s1[start], set))
+		++start;
+	while (end > start && is_char_set(s1[end - 1], set))
 		--end;
-		if (!is_char_set(ptr[end], set))
-		{
-			end++;
-			break ;
-		}	
-	}
-	ptr = (char *)malloc(sizeof(char) * (end - start) + 1);
+	ptr = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!ptr)
 		return (0);
-	else
-		ft_strlcpy(ptr, (s1 + start), (end - start));
+	ft_strlcpy(ptr, s1 + start, end - start + 1);
 	return (ptr);
 }
 

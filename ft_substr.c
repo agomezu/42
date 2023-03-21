@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:05:38 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/20 21:09:11 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:15:12 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@ char
 {
 	char	*str;
 
+	if (!*s || !s)
+		return (ft_strdup(""));
 	if (start > ft_strlen(s))
-		len = 0;
+		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (len == 0)
+		return (ft_strdup(""));
+	str = (char *)malloc(len + 1);
 	if (!str)
-		return (0);
+		return (NULL);
 	ft_strlcpy(str, (s + start), (len + 1));
 	return (str);
 }

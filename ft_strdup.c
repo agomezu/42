@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:59:42 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:52:49 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:26:37 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,14 @@
 char
 	*ft_strdup(const char *s)
 {
-	size_t	i;
+	size_t	len;
 	char	*ptr;
 
-	if (!s)
-		return (NULL);
-	ptr = (char *)malloc(sizeof(s) * (ft_strlen(s) + 1));
-	i = 0;
+	len = ft_strlen(s) + 1;
+	ptr = (char *)malloc(len);
 	if (!ptr)
 		return (0);
-	while (s[i])
-	{
-		ptr[i] = s[i];
-		++i;
-	}
-	ptr[i] = '\0';
+	ft_memcpy(ptr, s, len);
 	return (ptr);
 }
 

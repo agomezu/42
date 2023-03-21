@@ -6,16 +6,16 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:41:47 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:27:38 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static long int
-	ft_number_len(int nbr)
+	ft_number_len(long int nbr)
 {
-	int	len;
+	long int	len;
 
 	len = 0;
 	if (nbr <= 0)
@@ -29,7 +29,7 @@ static long int
 }
 
 static char
-	*ft_asign(char *str, int nbr, long int len)
+	*ft_asign(char *str, long int nbr, long int len)
 {
 	while (nbr > 0)
 	{
@@ -45,20 +45,22 @@ char
 {
 	long int		len;
 	char			*newstr;
+	long int		nbr;
 
-	len = ft_number_len(n);
+	nbr = n;	
+	len = ft_number_len(nbr);
 	newstr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!newstr)
 		return (0);
 	newstr[len--] = 0;
-	if (n == 0)
+	if (nbr == 0)
 		newstr[0] = '0';
-	if (n < 0)
+	if (nbr < 0)
 	{
-		n *= -1;
+		nbr *= -1;
 		newstr[0] = '-';
 	}
-	ft_asign(newstr, n, len);
+	ft_asign(newstr, nbr, len);
 	return (newstr);
 }
 

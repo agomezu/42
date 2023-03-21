@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:46:39 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/06 17:10:30 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:43:16 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@ void
 	unsigned char	*d_ptr;
 	unsigned const char	*s_ptr;
 
+	if (dst == NULL && src == NULL)
+		return (NULL);
 	d_ptr = (unsigned char *)dst;
 	s_ptr = (unsigned const char *)src;
-	if (n == 0)
-		return (d_ptr);
 	i = 0;
 	while (i < n)
 	{
-		*(d_ptr) = *(s_ptr);
+		*(d_ptr + i) = *(s_ptr + i);
 		++i;
-		++d_ptr;
-		++s_ptr;
 	}
-	return (d_ptr);
+	return (dst);
 }
 
 // TEST

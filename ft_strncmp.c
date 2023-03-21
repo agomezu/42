@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:35:06 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:39:00 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:57:25 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int
 	while (p1[i] && p2[i] && i < n)
 	{
 		if (p1[i] != p2[i])
-			return((int)(p1[i] - p2[i]));
+			return((unsigned char)p1[i] - (unsigned char)p2[i]);
 		++i;
 	}
 	if (i == n)
 		return (0);
-	return ((int)(p1[i]- p2[i]));
+	return ((unsigned char)p1[i]- (unsigned char)p2[i]);
 }
 
 // TEST
