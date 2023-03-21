@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 22:47:43 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/20 21:08:51 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:38:45 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 void
 	*ft_calloc(size_t nmemb, size_t size)
 {
+	size_t	bytes;
 	void	*ptr;
 
-	if (!size)
-		ptr = (void *)malloc(sizeof(void));
-	else
-		ptr = (void *)malloc(nmemb * size);
-	if (!ptr)
+	bytes = nmemb * size;
+	if (size && (bytes / size) != nmemb)
 		return (NULL);
-	else
-		ft_bzero(ptr, (nmemb * size));
+	ptr = malloc(bytes);
+	if (NULL == ptr)
+		return (NULL);
+	ft_bzero(ptr, bytes);
 	return (ptr);
 }
 

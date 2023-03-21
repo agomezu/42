@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:32 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/20 21:07:38 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:30:10 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,25 @@ t_list
 	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new;
-	t_list	*list;
+	t_list	*tmp;
 
-	if (!lst || !f || !del)
-		return (0);
-	new = ft_lstnew((f)(lst->content));
-	if (!new)
-		return (0);
-	list = new;
-	lst = lst->next;
+	if (!lst || !f)
+		return (NULL);
+	new = NULL;
 	while (lst)
 	{
-		new->next = ft_lstnew((f)(lst->content));
-		if (!new->next)
+		tmp = ft_lstnew(f(lst->content));
+		if (!tmp)
 		{
-			ft_lstclear(&list, del);
-			return (0);
+			ft_lstclear(&new, del);
+			free(new);
+			return (NULL);
 		}
-		new = new->next;
+		ft_lstadd_back(&new, tmp);
 		lst = lst->next;
 	}
-	new->next = NULL;
-	return (list);
+	return (new);
 }
-
-// TEST
 
 // DESCRIPTION
 /* Iterates the list ’lst’ and applies the function

@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:30:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:41:19 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:48:06 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ static int
 	return (count);
 }
 
+void
+	del_newarr(char **newarr, int i)
+{
+	while (i-- > 0)
+		free(newarr[i]);
+	free(newarr);
+}
+
 char
 	**ft_split(char const *s, char c)
 {
@@ -39,27 +47,31 @@ char
 	size_t	next_word_len;
 	int	words;
 
-	if (s)
-		string = (char *)s;
-	else
+	if (s == NULL)
 		return (0);
+	string = (char *)s;
 	words = ft_count_words(string, c);
 	newarr = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!newarr)
 		return (0);
 	i = 0;
-	while (*(s))
+	while (*(string))
 	{
-		while (*s == c && *s)
-			++s;
-		if (*s)
+		while (*string == c)
+			string++;
+		if (*string)
 		{
-			if (!ft_strchr(s, c))
-				next_word_len = ft_strlen(s);
+			if (ft_strchr(string, c) == NULL)
+				next_word_len = ft_strlen(string);
 			else
-				next_word_len = (ft_strchr(s, c) - s);
-			newarr[i++] = ft_substr(s, 0, next_word_len);
-			s += next_word_len;
+				next_word_len = (ft_strchr(string, c) - string);
+			newarr[i++] = ft_substr(string, 0, next_word_len);
+			if (newarr[i - 1] == NULL)
+			{
+				del_newarr(newarr, i);
+				return (NULL);
+			}
+			string += next_word_len;
 		}
 	}
 	newarr[i] = 0;
