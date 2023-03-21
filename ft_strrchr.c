@@ -6,14 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 08:29:25 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/21 18:08:03 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:08:52 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char
-	*ft_strrchr(const char *s, int c);
 
 char
 	*ft_strrchr(const char *s, int c)
@@ -25,7 +22,7 @@ char
 
 	p1 = (const char *)s;
 	character = (char)c;
-	ret = 0;
+	ret = NULL;
 	i = 0;
 	while (p1[i])
 	{
@@ -38,7 +35,7 @@ char
 	else if (ret)
 		return ((char *)ret);
 	else
-		return ((char *) NULL);
+		return (NULL);
 }
 
 // TEST

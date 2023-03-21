@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:16:15 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:39:35 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:58:10 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char
 	char	*hay;
 	char	*need;
 
-	if (!needle || haystack == needle)
+	if (!*needle || haystack == needle)
 		return ((char *)haystack);
 	i = 0;
 	hay = (char *)haystack;
@@ -34,7 +34,7 @@ char
 			return (&hay[i]);
 		++i;
 	}
-	return (0);
+	return (NULL);
 }
 
 /* int	main(void)
