@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:04 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/21 13:27:38 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:25:10 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char
 	char			*newstr;
 	long int		nbr;
 
-	nbr = n;	
+	nbr = n;
 	len = ft_number_len(nbr);
 	newstr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!newstr)

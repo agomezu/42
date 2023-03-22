@@ -6,12 +6,12 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 23:04:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/20 22:02:26 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:43:42 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
- 
+
 size_t
 	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
@@ -30,7 +30,7 @@ size_t
 	}
 	dst[dst_len] = '\0';
 	return (ft_strlen(dst) + ft_strlen(src));
-}   
+}
 
 // TEST
 /*int	main(void)
