@@ -6,36 +6,26 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 08:29:25 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/21 18:08:52 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:29:48 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "libft.h"
 
 char
 	*ft_strrchr(const char *s, int c)
 {
-	const char	*p1;
-	char	character;
-	char	*ret;
-	int		i;
+	int		len;
 
-	p1 = (const char *)s;
-	character = (char)c;
-	ret = NULL;
-	i = 0;
-	while (p1[i])
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if (p1[i] == character)
-			ret = (char *)&p1[i];
-		++i;
+		if (s[len] == (char)c)
+			return ((char *)(s + len));
+		--len;
 	}
-	if (character == '\0')
-		return ((char *)&p1[i]);
-	else if (ret)
-		return ((char *)ret);
-	else
-		return (NULL);
+	return (NULL);
 }
 
 // TEST
