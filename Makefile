@@ -6,7 +6,7 @@
 #    By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 20:50:43 by agomez-u          #+#    #+#              #
-#    Updated: 2023/03/22 21:01:26 by agomez-u         ###   ########.fr        #
+#    Updated: 2023/03/22 21:26:45 by agomez-u         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ SRCS_B =	ft_lstadd_back_bonus.c \
 
 OBJS 	= $(SRCS:.c=.o)
 OBJS_B 	= $(SRC_B:.c=.o)
-RM 	= 	rm -h
+RM 	= 	rm -f
 LIBC 	= 	ar -rcs
 FLAGS 	= -Wall -Wextra -Werror
 INCS 	= .
