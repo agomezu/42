@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 18:08:57 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/02/23 19:40:29 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:51:51 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char
 {
 	size_t		len1;
 	size_t		len2;
-	char	*newstr;
+	char		*newstr;
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);

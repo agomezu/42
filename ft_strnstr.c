@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:16:15 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/21 17:58:10 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:48:59 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char
 	while (hay[i] && i < len)
 	{
 		j = 0;
-		while (hay[i+j] && need[j] && hay[i+j] == need[j] && i+j < len)
+		while (hay[i + j] && need[j] && hay[i + j] == need[j]
+			&& i + j < len)
 			++j;
 		if (j == ft_strlen(need) && i + j <= len)
 			return (&hay[i]);

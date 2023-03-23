@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/06 22:32:38 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:52:15 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,5 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-
 
 #endif

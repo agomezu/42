@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:45:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/22 20:42:44 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:50:09 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int
 	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
-	unsigned char		*p1;
-	unsigned char		*p2;
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
 
 	if (n == 0)
 		return (0);

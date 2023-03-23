@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:30:16 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/21 18:48:06 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:13:20 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,23 @@ static int
 }
 
 void
-	del_newarr(char **newarr, int i)
+	*del_newarr(char **newarr, int i)
 {
-	while (i-- > 0)
+	while (i--)
 		free(newarr[i]);
 	free(newarr);
+	return (NULL);
+}
+
+size_t
+	get_next_word_len(char const *str, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != c && str[len])
+		len++;
+	return (len);
 }
 
 char
@@ -43,36 +55,26 @@ char
 {
 	int		i;
 	char	**newarr;
-	char	*string;
-	size_t	next_word_len;
-	int	words;
+	int		words;
 
-	if (s == NULL)
-		return (0);
-	string = (char *)s;
-	words = ft_count_words(string, c);
+	if (!s)
+		return (NULL);
+	words = ft_count_words(s, c);
 	newarr = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!newarr)
-		return (0);
+		return (NULL);
 	i = 0;
-	while (*(string))
+	while (*s)
 	{
-		while (*string == c)
-			string++;
-		if (*string)
+		if (*s != c)
 		{
-			if (ft_strchr(string, c) == NULL)
-				next_word_len = ft_strlen(string);
-			else
-				next_word_len = (ft_strchr(string, c) - string);
-			newarr[i++] = ft_substr(string, 0, next_word_len);
-			if (newarr[i - 1] == NULL)
-			{
-				del_newarr(newarr, i);
-				return (NULL);
-			}
-			string += next_word_len;
+			newarr[i] = ft_substr(s, 0, get_next_word_len(s, c));
+			if (!newarr[i++])
+				return (del_newarr(newarr, i));
+			s += ft_strlen(newarr[i - 1]);
 		}
+		else
+			s++;
 	}
 	newarr[i] = 0;
 	return (newarr);

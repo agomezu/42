@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:36:02 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/06 17:28:55 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:09:08 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void
 	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*ret;
 
 	i = 0;

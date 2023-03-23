@@ -6,13 +6,14 @@
 #    By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 20:50:43 by agomez-u          #+#    #+#              #
-#    Updated: 2023/03/22 21:26:45 by agomez-u         ###   ########.fr        #
+#    Updated: 2023/03/23 17:48:25 by agomez-u         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLES
 
 NAME = libft.a
+
 SRCS = 	ft_isalpha.c \
        		ft_isdigit.c \
 		ft_isalnum.c \
@@ -58,36 +59,31 @@ SRCS_B =	ft_lstadd_back_bonus.c \
 		ft_lstlast_bonus.c \
 		ft_lstnew_bonus.c		
 
+CC	= gcc
 OBJS 	= $(SRCS:.c=.o)
-OBJS_B 	= $(SRC_B:.c=.o)
+OBJS_B 	= $(SRCS_B:.c=.o)
 RM 	= 	rm -f
-LIBC 	= 	ar -rcs
-FLAGS 	= -Wall -Wextra -Werror
+LIBC 	= ar rcs
+CFLAGS 	= -Wall -Wextra -Werror
 INCS 	= .
+
+.c.o :
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
+
+$(NAME): ${OBJS}
+	${LIBC}	$(NAME) $(OBJS)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
-%.o: %.c $(HEADER)
-	gcc $(CFLAGS) -c -o $@ $<
-
-clean:
-	rm -f $(OBJS)
+bonus: $(NAME) $(OBJS_B)
+	${LIBC} $(NAME) $(OBJS_B)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME) $(bonus)
+
+clean:
+	$(RM) -f $(OBJS) $(OBJS_B)
 
 re: fclean all
 
-bonus: $(SRCS_BONUS:.c=.o)
-	ar rcs $(NAME) $(SRCS_BONUS:.c=.o)
-
-%.o: %_bonus.c $(HEADER)
-	gcc $(CFLAGS) -c -o $@ $<
-
-test: all
-	gcc main.c $(NAME) -o test
-
-.PHONY: all clean fclean re bonus test
+.PHONY: all bonus clean fclean re .c.o
