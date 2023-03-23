@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:07:53 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/03/23 14:52:15 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/03/23 22:53:54 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 # include <stddef.h>
 # include <string.h>
 
-// BONUS PART
+// *************************************
+// BONUS PART. TYPEDEF STRUCT PROTOTYPE*
+// *************************************
+
 /* The members of the t_list struct are:
  * content: The data contained in the node
  * void * allows to store any kind of data.
  * next: The address of the next node,
- * or NULL if the next node is the last one.
- */
+ * or NULL if the next node is the last one. */
 
 typedef struct s_list
 {
@@ -34,9 +36,9 @@ typedef struct s_list
 }			t_list;
 
 // BONUS: FUNCTIONS
+
 /* Functions of the bonus part that work
- * with the typedef struct s_list structure.
- */
+ * with the typedef struct s_list structure. */
 
 t_list		*ft_lstnew(void *content);
 
@@ -56,8 +58,31 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// PART ONE: LIBC FUNCTIONS 
-/* library description in 2-3 lines… */
+// **************************
+// PART ONE: LIBC FUNCTIONS *
+// **************************
+
+/* The libft library is a collection of commonly used functions 
+ *  in the C programming language, designed to be portable
+ *  and compatible with various platforms. It contains functions
+ *  that are not part of the standard C library, such as string
+ *  manipulation, memory allocation, and linked list operations.
+ *
+ *  The library is organized into several modules, each containing
+ *  a set of related functions. These modules include memory,
+ *  strings, characters, numbers, lists, and other utility fts.
+ *
+ *  The library is intended to provide a convenient set of tools
+ *  for C programmers, allowing them to write code more efficiently
+ *  and with fewer bugs. It is also used as a learning tool
+ *  for people new to the C programming language, as it provides
+ *  a good example of how to write modular and reusable code.
+ *
+ *  The libft library is often used in conjunction with other C
+ *  libraries and frameworks, and is commonly included in larger
+ *  C projects */
+
+// NO POINTER FUNCTIONS OF PART ONE
 
 int			ft_isalpha(int c);
 
@@ -97,8 +122,24 @@ void		ft_putendl_fd(char *s, int fd);
 
 void		ft_putnbr_fd(int n, int fd);
 
-// functions with pointers 
-// – part 1 and 2
+/*********************
+/ POINTER FUNCTIONS  *
+// ------------------*
+// PART ONE AND TWO  *
+/ *******************/
+
+/* A function declared with a pointer is a function that returns
+ * a memory address instead of a specific value.
+ *
+ * This memory address can then be used to access the data
+ * that the function has generated or modified.
+ *
+ * This can be useful in situations where the data returned 
+ * by the function is large or complex, or where the function
+ * needs to modify data in place rather than returning a copy.
+ *
+ * Using pointers can also improve performance by reducing
+ * he amount of data that needs to be copied or passed around. */
 
 void		*ft_memset(void *b, int c, size_t len);
 
