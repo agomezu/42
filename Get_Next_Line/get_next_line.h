@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:54:47 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/16 12:42:50 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/16 14:38:17 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define BUFFER_SIZE 32
 
 
-char	*get_next_line(int fd);
+int	get_next_line(int fd, char **line);
 
 // Prototypes for auxiliar functions needed
 

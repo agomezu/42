@@ -6,10 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:08:46 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/16 13:06:09 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/16 15:06:20 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include <fcntl.h>
 # include "get_next_line.h"
 
 static int
@@ -24,10 +25,18 @@ static int
 
 	if (fd < 0 || !buffer)
 		return (0);
-	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
-	if (bytes_read < 0)
-		return (-1);
-	temp_buffer[bytes_read] = '\0';
+	if (BUFFER_SIZE > 0)
+	{
+		bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
+		if (bytes_read < 0)
+			return (-1);
+		temp_buffer[bytes_read] = '\0';
+	}
+	else
+	{
+		bytes_read = 0;
+		temp_buffer[bytes_read] = '\0';
+	}
 	if (*buffer == NULL)
 		*buffer = ft_strdup(temp_buffer);
 	else
@@ -69,26 +78,64 @@ static int
 	}
 }
 
-char
-	*get_next_line(int fd)
+int
+	get_next_line(int fd, char **line)
 {
 	static char	*buffer;
-	char		*line;
-	int		status;
+	int		bytes_read;
+	int		ret;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	status = 1;
-	while (status == 1)
+	if (!line)
+		return (-1);
+	while (!ft_strchr(buffer, '\n'))
 	{
-		if (!buffer || !ft_strchr(buffer, '\n'))
-			status = read_buffer(fd, &buffer);
-		if (status < 0)
-			return (NULL);
-		status = process_buffer(&buffer, &line);
+		bytes_read = read_buffer(fd, &buffer);
+		if (bytes_read <= 0)
+			break ;
 	}
-	if (status == 0)
-		return (NULL);
+	if (bytes_read < 0)
+	{
+		free(buffer);
+		buffer = NULL;
+		return (-1);
+	}
+	ret = process_buffer(&buffer, line);
+	if (ret == 0)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
+	return (ret);
+}
+
+int	main(void)
+{
+	int	fd = open("text.txt", O_RDONLY);
+	char	*line = NULL;
+	int	ret = 0;
+
+	if (fd < 0)
+	{
+		perror("Error al abrir el archivo");
+		return (1);
+	}
+
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		printf("%s\n", line);
+		free(line);
+		line = NULL;
+	}
+	
+	if (ret == 0)
+	{
+		printf("%s\n", line);
+		free(line);
+		line = NULL;
+	}
 	else
-		return (line);
+		perror("Error al leer el archivo");
+
+	close(fd);
+	return (0);
 }
