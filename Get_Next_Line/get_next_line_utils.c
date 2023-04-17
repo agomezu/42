@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:07:08 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/16 12:42:08 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/17 08:10:30 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ size_t
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
@@ -125,7 +127,7 @@ char
 {
 	char	*str;
 
-	if (!*s || !s)
+	if (!s || !*s)
 		return (ft_strdup(""));
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
