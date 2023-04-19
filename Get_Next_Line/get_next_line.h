@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:54:47 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/16 14:38:17 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/18 08:19:55 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 # include <unistd.h>
 
 
-#define BUFFER_SIZE 32
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 100 
+#endif
 
 
-int	get_next_line(int fd, char **line);
+char	*get_next_line(int fd);
 
 // Prototypes for auxiliar functions needed
 

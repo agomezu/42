@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:08:46 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/17 08:14:06 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/19 07:39:08 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 static int
 	read_buffer(int fd, char **buffer)
 {
-	// Leer del file descriptor y almacenar en el buffer
-	// Devolver el número de bytes leídos
-
+	// reads the fd and saves into buffer variable; then returns total bytes read 
 	ssize_t	bytes_read;
 	char	temp_buffer[BUFFER_SIZE + 1];
 	char	*tmp;
 
-	// if (fd < 0 || !buffer)
-		// return (0);	
+	if (fd < 0 || !buffer)
+		return (0);	
 	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);	
 	if (bytes_read < 0)
 		return (-1);
@@ -52,8 +50,8 @@ static int
 	char	*newline;
 	char	*tmp;
 
-	// if (!buffer || !*buffer || !line)
-		// return (-1);
+	if (!buffer || !*buffer || !line)
+		return (-1);
 	newline = ft_strchr(*buffer, '\n');
 	if (newline != NULL)
 	{
@@ -65,22 +63,20 @@ static int
 	}
 	else
 	{
-		*line = ft_strdup(*buffer);
+		*line = ft_strdup(*buffer);¡	
 		free(*buffer);
-		*buffer = NULL;
+		*buffer =ft_strdup("");
 		return (0);
 	}
 }
 
-int
-	get_next_line(int fd, char **line)
+char
+	*get_next_line(int fd)
 {
 	static char	*buffer = NULL;
 	int		bytes_read;
-	int		ret;
-
-	if (!line)
-		return (-1);
+	char		*line = NULL;
+	int		status;
 
 	while (buffer == NULL || !ft_strchr(buffer, '\n'))
 	{
@@ -92,27 +88,28 @@ int
 	{
 		free(buffer);
 		buffer = NULL;
-		return (-1);
+		return (NULL);
 	}
 	if (buffer == NULL)
-	{
-		*line = ft_strdup("");
-		return (0);
-	}
-	ret = process_buffer(&buffer, line);
-	if (ret == 0 && line != NULL)
+		buffer = ft_strdup("");
+	status = process_buffer(&buffer, &line);
+	if (status == 0)
 	{
 		free(buffer);
 		buffer = NULL;
 	}
-	return (ret);
+	if (line[0] == '\0')
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }
 
 int	main(void)
 {
 	int	fd = open("./text.txt", O_RDONLY);
 	char	*line = NULL;
-	int	ret = 0;
 
 	if (fd < 0)
 	{
@@ -120,22 +117,13 @@ int	main(void)
 		return (1);
 	}
 
-	while ((ret = get_next_line(fd, &line)) > 0)
+	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("%s\n", line);
 		free(line);
 		line = NULL;
 	}
 	
-	if (ret == 0)
-	{
-		printf("%s\n", line);
-		free(line);
-		line = NULL;
-	}
-	else
-		perror("Error al leer el archivo");
-
 	close(fd);
 	return (0);
 }
