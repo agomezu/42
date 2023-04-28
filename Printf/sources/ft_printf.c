@@ -6,7 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:07:40 by agomez-u          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/19 15:39:27 by agomez-u         ###   ########.fr       */
+=======
+/*   Updated: 2023/04/22 11:11:44 by agomez-u         ###   ########.fr       */
+>>>>>>> 027ccdb72aea9b65f576b457c7bc5686eaf30293
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +30,9 @@ int
 int
 	ft_putchar(char c)
 {
-	int	ret;
-
-	ret = write(1, &c, 1);
-	if (ret == -1)
+	if (!c)
 		return (-1);
-	else
-		return (1);
+	return (write(1, &c, 1));
 }
 
 int
@@ -70,7 +70,8 @@ int
 			ret = ft_putchar(format[i]);
 		if (check_ret_and_increment(ret, &count) == -1)
 			return (-1);
-		i++;
+		else
+			++i;
 	}
 	va_end(args);
 	return (count);

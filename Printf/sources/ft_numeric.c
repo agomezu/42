@@ -6,7 +6,11 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:10:23 by agomez-u          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/19 15:52:06 by agomez-u         ###   ########.fr       */
+=======
+/*   Updated: 2023/04/22 10:57:08 by agomez-u         ###   ########.fr       */
+>>>>>>> 027ccdb72aea9b65f576b457c7bc5686eaf30293
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +22,17 @@ int
 	uintptr_t			base_length;
 
 	base_length = ft_strlen(base);
+	if (!base_length)
+		return (-1);
 	if (nbr >= (uintptr_t)base_length)
 		ft_putnbr_base(nbr / base_length, base, count);
-	ft_putchar(base[nbr % base_length]);
-	(*count)++;
-	return (0);
+	if ((ft_putchar(base[nbr % base_length])) == -1)
+		return (0);
+	else
+	{
+		(*count)++;
+		return (1);
+	}
 }
 
 int
@@ -34,14 +44,24 @@ int
 	count = 0;
 	if (nbr < 0)
 	{
-		ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
 		unbr = abs(nbr);
 		count++;
 	}
+	else if (nbr == 0)
+	{
+		if (ft_putchar('0') == -1)
+			return (-1);
+		else
+			return (1);
+	}
 	else
 		unbr = abs(nbr);
-	ft_putnbr_base(unbr, "0123456789", &count);
-	return (count);
+	if (ft_putnbr_base(unbr, "0123456789", &count))
+		return (count);
+	else
+		return (-1);
 }
 
 int
@@ -78,7 +98,15 @@ int
 	if (ptr == NULL)
 		return (ft_putstr("0x0"));
 	count += ft_putstr("0x");
+<<<<<<< HEAD
 	ft_putnbr_base((uintptr_t)ptr, base, &count);
+=======
+	if (count == -1)
+		return (-1);
+	ft_putnbr_base((uintmax_t)ptr, base, &count);
+	if (count == -1)
+		return (-1);
+>>>>>>> 027ccdb72aea9b65f576b457c7bc5686eaf30293
 	return (count);
 }
 
