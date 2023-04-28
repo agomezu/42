@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:08:18 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/14 12:17:45 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/22 11:05:32 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int
 	check_ret_and_increment(int ret, int *count)
 {
-	if (ret == -1)
+	if (ret == -1 || *count == -1)
 		return (-1);
 	*count += ret;
-	return (0);
+	return (1);
 }
 
 int

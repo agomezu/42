@@ -6,7 +6,7 @@
 #    By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 12:37:40 by agomez-u          #+#    #+#              #
-#    Updated: 2023/04/14 12:19:03 by agomez-u         ###   ########.fr        #
+#    Updated: 2023/04/22 10:59:51 by agomez-u         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,12 @@ OBJS	= $(SRCS:.c=.o)
 RM 	=	rm -f
 CFLAGS	= -Wall -Wextra -Werror
 LIBC	= ar rcs
-INCS	= .
+INCS	= ./includes/ft_printf.h
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INCS)
 	${LIBC} $(NAME) $(OBJS)
 
 all:	$(NAME)
