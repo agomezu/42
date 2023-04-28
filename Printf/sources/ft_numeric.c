@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:10:23 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/14 12:17:30 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:52:06 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int
 	if (ptr == NULL)
 		return (ft_putstr("0x0"));
 	count += ft_putstr("0x");
-	ft_putnbr_base((uintmax_t)ptr, base, &count);
+	ft_putnbr_base((uintptr_t)ptr, base, &count);
 	return (count);
 }
 

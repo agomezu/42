@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:08:46 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/19 07:39:08 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:05:19 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int
 	char	*tmp;
 
 	if (fd < 0 || !buffer)
-		return (0);	
+		return (0);
 	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);	
 	if (bytes_read < 0)
 		return (-1);
@@ -46,7 +46,6 @@ static int
 	// Procesar el contenido del buffer
 	// Extraer una línea completa del buffer y almacenar en la variable 'line'
 	// Devolver 1 si se encuentra una línea completa, 0 si se llega al final del archivo, -1 si hay un error
-
 	char	*newline;
 	char	*tmp;
 
@@ -63,9 +62,9 @@ static int
 	}
 	else
 	{
-		*line = ft_strdup(*buffer);¡	
+		*line = ft_strdup(*buffer);
 		free(*buffer);
-		*buffer =ft_strdup("");
+		*buffer = ft_strdup("");
 		return (0);
 	}
 }
@@ -98,7 +97,12 @@ char
 		free(buffer);
 		buffer = NULL;
 	}
-	if (line[0] == '\0')
+	if (line[0] == '\0' && status != 0)
+	{
+		free(line);
+		return (ft_strdup("\n"));	// Return an allocated empty string
+	}
+	else if (line[0] == '\0' && status == 0)
 	{
 		free(line);
 		return (NULL);

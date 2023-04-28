@@ -6,11 +6,22 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:07:40 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/14 12:09:19 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:39:27 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+int
+	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int
 	ft_putchar(char c)
@@ -22,17 +33,6 @@ int
 		return (-1);
 	else
 		return (1);
-}
-
-int
-	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 int
