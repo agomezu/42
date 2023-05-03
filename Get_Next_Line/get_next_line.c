@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:08:46 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/28 21:05:19 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:27:31 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 static int
 	read_buffer(int fd, char **buffer)
 {
-	// reads the fd and saves into buffer variable; then returns total bytes read 
 	ssize_t	bytes_read;
 	char	temp_buffer[BUFFER_SIZE + 1];
 	char	*tmp;
@@ -26,9 +25,9 @@ static int
 	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);	
 	if (bytes_read < 0)
 		return (-1);
-	temp_buffer[bytes_read] = '\0';
 	if (bytes_read == 0)
 		return (0);
+	temp_buffer[bytes_read] = '\0';
 	if (*buffer == NULL)
 		*buffer = ft_substr(temp_buffer, 0, bytes_read);
 	else
@@ -43,9 +42,6 @@ static int
 static int
 	process_buffer(char **buffer, char **line)
 {
-	// Procesar el contenido del buffer
-	// Extraer una línea completa del buffer y almacenar en la variable 'line'
-	// Devolver 1 si se encuentra una línea completa, 0 si se llega al final del archivo, -1 si hay un error
 	char	*newline;
 	char	*tmp;
 
@@ -54,7 +50,7 @@ static int
 	newline = ft_strchr(*buffer, '\n');
 	if (newline != NULL)
 	{
-		*line = ft_substr(*buffer, 0, newline - *buffer);
+		*line = ft_substr(*buffer, 0, newline - *buffer + 1);
 		tmp = ft_strdup(newline + 1);
 		free(*buffer);
 		*buffer = tmp;
@@ -63,8 +59,6 @@ static int
 	else
 	{
 		*line = ft_strdup(*buffer);
-		free(*buffer);
-		*buffer = ft_strdup("");
 		return (0);
 	}
 }
@@ -77,7 +71,9 @@ char
 	char		*line = NULL;
 	int		status;
 
-	while (buffer == NULL || !ft_strchr(buffer, '\n'))
+	if (fd < 0)
+		return (NULL);
+	while (buffer == NULL || ft_strchr(buffer, '\n') == NULL)
 	{
 		bytes_read = read_buffer(fd, &buffer);
 		if (bytes_read <= 0)
@@ -89,30 +85,26 @@ char
 		buffer = NULL;
 		return (NULL);
 	}
-	if (buffer == NULL)
-		buffer = ft_strdup("");
-	status = process_buffer(&buffer, &line);
+	status = process_buffer(&buffer, &line);	
 	if (status == 0)
 	{
 		free(buffer);
+		free(line);
 		buffer = NULL;
-	}
-	if (line[0] == '\0' && status != 0)
-	{
-		free(line);
-		return (ft_strdup("\n"));	// Return an allocated empty string
-	}
-	else if (line[0] == '\0' && status == 0)
-	{
-		free(line);
+		line = NULL;
 		return (NULL);
+	}
+	else if (status && line[0] == '\0')
+	{
+		free(line);
+		return (ft_strdup("\n"));
 	}
 	return (line);
 }
 
 int	main(void)
 {
-	int	fd = open("./text.txt", O_RDONLY);
+	int	fd = open("./ascii.txt", O_RDONLY);
 	char	*line = NULL;
 
 	if (fd < 0)
@@ -123,11 +115,10 @@ int	main(void)
 
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s\n", line);
+		printf("%s", line);
 		free(line);
 		line = NULL;
-	}
-	
+	}	
 	close(fd);
 	return (0);
 }

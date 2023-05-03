@@ -6,22 +6,13 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:07:08 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/04/17 08:24:17 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:33:27 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "get_next_line.h"
 
-// Funciones auxiliares
-// Algunas funciones útiles:
-//
-// ft_strlen: para calcular la longitud de una cadena de caracteres.
-// ft_strchr: para buscar un carácter en una cadena de caracteres.
-// ft_strjoin: para unir dos cadenas de caracteres.
-// ft_substr: para extraer una subcadena de una cadena de caracteres.
-// ft_strdup: para duplicar una cadena de caracteres.
-
-size_t
+size_t	
 	ft_strlen(const char *s)
 {
 	size_t	i;
