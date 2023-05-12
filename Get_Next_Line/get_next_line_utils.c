@@ -10,22 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
-size_t	
-	ft_strlen(const char *s)
+char
+	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 
-void	
+void
 	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
@@ -42,56 +43,25 @@ void
 }
 
 char
-	*ft_strchr(const char *s, int c)
+	*ft_strmerge(char const *s1, char const *s2)
 {
-	unsigned int	i;
-	char			character;
+	size_t	len1;
+	size_t	len2;
+	char	*newstr;
 
-	i = 0;
-	character = (char)c;
-	while (s[i])
-	{
-		if (s[i] == character)
-			return ((char *)&s[i]);
-		++i;
-	}
-	if (character == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
-}
-
-char
-	*ft_strdup(const char *s)
-{
-	size_t	len;
-	char	*ptr;
-
-	len = ft_strlen(s) + 1;
-	ptr = (char *)malloc(len);
-	if (!ptr)
-		return (0);
-	ft_memcpy(ptr, s, len);
-	return (ptr);
-}
-
-char
-	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t		len1;
-	size_t		len2;
-	char		*newstr;
-
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+	len1 = 0;
+	len2 = 0;
+	while (s1 && s1[len1])
+		++len1;
+	while (s2 && s2[len2])
+		++len2;
 	newstr = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!newstr)
 		return (0);
-	else
-	{
-		ft_memcpy(newstr, s1, len1);
+	ft_memcpy(newstr, s1, len1);
+	if (s2)
 		ft_memcpy(newstr + len1, s2, len2);
-		newstr[len1 + len2] = '\0';
-	}
+	newstr[len1 + len2] = '\0';
 	return (newstr);
 }
 
@@ -110,22 +80,25 @@ size_t
 		}
 		dst[i] = 0;
 	}
-	return (ft_strlen(src));
+	i = 0;
+	while (src[i])
+		++i;
+	return (i);
 }
 
 char
 	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
+	size_t	s_len;
 
-	if (!s || !*s)
-		return (ft_strdup(""));
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	if (len == 0)
-		return (ft_strdup(""));
+	s_len = 0;
+	while (s && s[s_len])
+		++s_len;
+	if (!s || !*s || start > s_len)
+		return (ft_strmerge("", NULL));
+	if (len > s_len - start)
+		len = s_len - start;
 	str = (char *)malloc(len + 1);
 	if (!str)
 		return (NULL);

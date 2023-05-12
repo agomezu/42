@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
-# include <fcntl.h>
+#include "get_next_line.h"
+#include <fcntl.h>
 
 static int
 	read_buffer(int fd, char **buffer)
@@ -22,7 +22,7 @@ static int
 
 	if (fd < 0 || !buffer)
 		return (0);
-	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);	
+	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
 	if (bytes_read < 0)
 		return (-1);
 	if (bytes_read == 0)
@@ -32,7 +32,7 @@ static int
 		*buffer = ft_substr(temp_buffer, 0, bytes_read);
 	else
 	{
-		tmp = ft_strjoin(*buffer, temp_buffer);
+		tmp = ft_strmerge(*buffer, temp_buffer);
 		free(*buffer);
 		*buffer = tmp;
 	}
@@ -51,7 +51,7 @@ static int
 	if (newline != NULL)
 	{
 		*line = ft_substr(*buffer, 0, newline - *buffer + 1);
-		tmp = ft_strdup(newline + 1);
+		tmp = ft_strmerge(newline + 1, NULL);
 		free(*buffer);
 		*buffer = tmp;
 		if (!*line || !*buffer)
@@ -60,7 +60,7 @@ static int
 	}
 	else
 	{
-		*line = ft_strdup(*buffer);
+		*line = ft_strmerge(*buffer, NULL);
 		free(*buffer);
 		*buffer = NULL;
 		if (!*line)
@@ -70,28 +70,39 @@ static int
 }
 
 char
-	*get_next_line(int fd)
+	*handle_buffer(int fd, char **buffer, int *bytes_read)
 {
-	static char	*buffer = NULL;
-	int		bytes_read;
-	char		*line = NULL;
-	int		status;
-
 	if (fd < 0)
 		return (NULL);
-	while (buffer == NULL || ft_strchr(buffer, '\n') == NULL)
+	while (*buffer == NULL || ft_strchr(*buffer, '\n') == NULL)
 	{
-		bytes_read = read_buffer(fd, &buffer);
-		if (bytes_read <= 0)
+		*bytes_read = read_buffer(fd, buffer);
+		if (*bytes_read <= 0)
 			break ;
 	}
-	if (bytes_read < 0)
+	if (*bytes_read < 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		free(*buffer);
+		*buffer = NULL;
 		return (NULL);
 	}
-	status = process_buffer(&buffer, &line);	
+	return (*buffer);
+}
+
+char
+	*get_next_line(int fd)
+{
+	static char		*buffer = NULL;
+	char			*line;
+	int				bytes_read;
+	int				status;
+
+	line = NULL;
+	bytes_read = 1;
+	buffer = handle_buffer(fd, &buffer, &bytes_read);
+	if (!buffer)
+		return (NULL);
+	status = process_buffer(&buffer, &line);
 	if (status <= 0)
 	{
 		free(buffer);
