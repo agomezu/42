@@ -6,12 +6,12 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:08:46 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/05/03 20:27:31 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:28:00 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <fcntl.h>
 # include "get_next_line.h"
+# include <fcntl.h>
 
 static int
 	read_buffer(int fd, char **buffer)
@@ -54,12 +54,18 @@ static int
 		tmp = ft_strdup(newline + 1);
 		free(*buffer);
 		*buffer = tmp;
+		if (!*line || !*buffer)
+			return (-1);
 		return (1);
 	}
 	else
 	{
 		*line = ft_strdup(*buffer);
-		return (0);
+		free(*buffer);
+		*buffer = NULL;
+		if (!*line)
+			return (-1);
+		return (*line != NULL);
 	}
 }
 
@@ -86,25 +92,25 @@ char
 		return (NULL);
 	}
 	status = process_buffer(&buffer, &line);	
-	if (status == 0)
+	if (status <= 0)
 	{
 		free(buffer);
 		free(line);
 		buffer = NULL;
 		line = NULL;
-		return (NULL);
+		return (0);
 	}
 	else if (status && line[0] == '\0')
 	{
 		free(line);
-		return (ft_strdup("\n"));
+		return (0);
 	}
 	return (line);
 }
 
-int	main(void)
+/* int	main(void)
 {
-	int	fd = open("./ascii.txt", O_RDONLY);
+	int	fd = open("./multiple_nlx5.txt", O_RDONLY);
 	char	*line = NULL;
 
 	if (fd < 0)
@@ -118,7 +124,7 @@ int	main(void)
 		printf("%s", line);
 		free(line);
 		line = NULL;
-	}	
+	}
 	close(fd);
 	return (0);
-}
+} */

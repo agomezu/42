@@ -19,7 +19,7 @@
 
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1000 
+# define BUFFER_SIZE 1024 
 #endif
 
 
