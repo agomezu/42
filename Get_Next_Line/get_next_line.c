@@ -6,7 +6,7 @@
 /*   By: agomez-u <agomez-u@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:08:46 by agomez-u          #+#    #+#             */
-/*   Updated: 2023/05/12 12:28:00 by agomez-u         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:36:29 by agomez-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char
 
 /* int	main(void)
 {
-	int	fd = open("./multiple_nlx5.txt", O_RDONLY);
+	int	fd = open("./file.txt", O_RDONLY);
 	char	*line = NULL;
 
 	if (fd < 0)
@@ -139,3 +139,38 @@ char
 	close(fd);
 	return (0);
 } */
+
+/*
+ *  File: get_next_line.c
+ * 
+ *  This file defines a set of functions that collectively read a file 
+ *  one line at a time, in a memory-efficient manner.
+ * 
+ *  The core function is 'get_next_line', which uses a static buffer to 
+ *  store the contents of the file. It reads from the file descriptor 'fd' 
+ *  into this buffer, and then copies a line from the buffer into 'line', 
+ *  where a "line" is defined as a sequence of characters ending with '\n' 
+ *  or the end of the file.
+ * 
+ *  'handle_buffer' and 'read_buffer' are helper functions used to read 
+ *  data from the file into the buffer and handle buffer operations. The 
+ *  'process_buffer' function processes the contents of the buffer, copying 
+ *  lines out of it as needed.
+ * 
+ *  Note that these functions use a number of string utilities such as 
+ *  'ft_substr', 'ft_strchr', and 'ft_strmerge', which are not defined in 
+ *  this file. Ensure these functions are properly defined elsewhere in your 
+ *  code.
+ * 
+ *  Also, be aware that this implementation uses the BUFFER_SIZE macro, 
+ *  which should be defined before this file is included. Typically, 
+ *  BUFFER_SIZE is set to a value that is a trade-off between memory usage 
+ *  and the number of system calls made.
+ * 
+ *  Memory management is carefully handled in the code to prevent leaks. 
+ *  Remember to call 'free' on the string returned by 'get_next_line' 
+ *  when you are finished with it.
+ *
+ *  Error handling: In case of an error, functions will return NULL or -1 
+ *  as appropriate, and any allocated memory is freed.
+ */
