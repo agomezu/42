@@ -8,12 +8,12 @@ int     is_map_surrounded_by_walls(t_game *game)
     for (j = 0; j < game->map_width; j++)
     {
         if (game->map[0][j] != '1' || game->map[game->map_height - 1][j] != '1')
-            return (0);
+            return (-1);
     }
     for (i = 0; i < game->map_height; i++)
     {
         if (game->map[i][0] != '1' || game->map[i][game->map_width - 1] != '1')
-            return (0);
+            return (-1);
     }
     return (1);
 }
@@ -36,7 +36,10 @@ int     is_visited(int *visited, t_point point, int width)
 
 void    dfs(t_game *game, int *visited, t_point point, int width)
 {
-    t_point     directions[4] = {(t_point){0, 1}, (t_point){1, 0}, (t_point){0, -1}, (t_point){-1, 0}};
+    t_point     directions[4] = {(t_point){0, 1},
+                                 (t_point){1, 0},
+                                 (t_point){0, -1},
+                                 (t_point){-1, 0}};
     t_point     next;
     int         i;
 

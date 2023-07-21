@@ -8,31 +8,65 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
-void render_game(t_game *game)
+void    render_tile(t_game *game, t_tile tile, int x, int y)
 {
-    int x;
-    int y;
+    int tile_x;
+    int tile_y;
+    int color;
 
-    // Loop through each tile in the map
-    for (y = 0; y < game->map_height; y++)
+    tile_y = 0;
+    while (tile_y < tile.height)
     {
-        for (x = 0; x < game->map_width; x++)
+        tile_x = 0;
+        while (tile_x < tile.width)
         {
-            t_tile tile;
-
-            // Determine what kind of tile it is
-            if (game->map[y][x] == '1')
-                tile = game->tiles.wall;
-            else if (game->map[y][x] == 'C')
-                tile = game->tiles.collectible;
-            else if (game->map[y][x] == 'E')
-                tile = game->tiles.exit;
-            else if (game->map[y][x] == 'P')
-                tile = game->tiles.player;
-            else
-                tile = game->tiles.floor;
-            // Draw the tile at the correct position in the window
-            mlx_put_image_to_window(game->mlx, game->win, tile.img, x * TILE_SIZE, y *TILE_SIZE);
+            color = *(unsigned int *)(tile.addr + (tile_y * tile.width + tile_x) * 4);
+            if ((color & 0x00FFFFFF) != 0)
+                my_mlx_pixel_put(&game->img_data, x * TILE_SIZE + tile_x,
+                                y * TILE_SIZE + tile_y, color);
+            tile_x++;
         }
+        tile_y++;
     }
 }
+
+void render_game(t_game *game)
+{
+    int     x;
+    int     y;
+    char    *moves_str;
+    char    *collectibles_str;
+
+    y = 0;
+    mlx_clear_window(game->mlx, game->win);
+    // Loop through each tile in the map
+    while (y < game->map_height)
+    {
+        x = 0;
+        while (x < game->map_width)
+        {
+            if (game->map[y][x] == '1')
+                render_tile(game, game->tiles.wall, x, y);
+            else if (game->map[y][x] == 'C')
+                render_tile(game, game->tiles.collectible, x, y);
+            else if (game->map[y][x] == 'E')
+                render_tile(game, game->tiles.exit, x, y);
+            else if (game->map[y][x] == '0')
+                render_tile(game, game->tiles.floor, x, y);
+            if (game->player.pos.x == x && game->player.pos.y == y) 
+                render_tile(game, game->tiles.player, x, y);
+            x++;
+        }
+        y++;
+    }
+    mlx_put_image_to_window(game->mlx, game->win, game->img_data.img, 0, 0);    
+    moves_str = ft_itoa(game->player.moves);
+    collectibles_str = ft_itoa(game->collectibles);
+    mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, "Moves: ");
+    mlx_string_put(game->mlx, game->win, 60, 10, 0xFFFFFF, moves_str);
+    mlx_string_put(game->mlx, game->win, 10, game->map_height * TILE_SIZE - 10, 0xFFFFFF, "Collectibles left: ");
+    mlx_string_put(game->mlx, game->win, 130, game->map_height * TILE_SIZE - 10, 0xFFFFFF, collectibles_str);
+    free(moves_str);
+    free(collectibles_str);
+}
+

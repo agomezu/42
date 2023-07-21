@@ -2,6 +2,7 @@
 # define SO_LONG
 
 #include <fcntl.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "minilibx_linux/mlx.h"
 #include "../get_next_line/get_next_line.h"
@@ -17,29 +18,36 @@ typedef struct s_point
     int         y;
 }                   t_point;
 
-typedef enum e_tiletype
-{
-    EMPTY = '0';
-    WALL = '1';
-    COLLECTABLE = 'C';
-    PLAYER = 'P';
-    EXIT = 'E';
-}                   t_tiletype;
-
 // Keycodes
 enum    e_keycode
 {
-    KEY_W = 119;
-    KEY_A = 97;
-    KEY_S = 115;
-    KEY_D = 100;
-    KEY_ESC = 65307;
+    KEY_W = 119,
+    KEY_A = 97,
+    KEY_S = 115,
+    KEY_D = 100,
+    KEY_ESC = 65307,
 };
+
+typedef struct s_data
+{
+    void        *img;
+    char        *addr;
+    int         height;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+}                   t_data; 
+
+typedef struct s_player
+{
+    t_point     pos;            // Player's current position
+    int     moves;              // Number of moves the player has made
+}               t_player;
 
 typedef struct s_tile
 {
     void        *img;           // Image
-    char        **addr;         // Image data
+    char        *addr;         // Image data
     int         width;          // W of the image
     int         height;         // H of the image
 }                   t_tile;
@@ -67,21 +75,6 @@ typedef struct s_game
     }               tiles;
 }                   t_game;
 
-typedef struct s_player
-{
-    t_point     pos;            // Player's current position
-    int     moves;              // Number of moves the player has made
-}               t_player;
-
-typedef struct s_data
-{
-    void        *img;
-    char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-}               t_data;
-
 /*  read_map: takes the filename of the map file and a pointer to a 't_game'
  *  structure. It fills in the 'map', 'map_width', 'map_height', and 'collectibles'
  *  fields of the 't_game' structure based on the contents of the map file. 
@@ -103,12 +96,24 @@ int     is_map_path_valid(t_game *game);
 int     is_map_surrounded_by_walls(t_game *game);
 
 /**/
-void    init_game(t_game *game)
+void    init_game(t_game *game);
 
 /**/
-void render_game(t_game *game)
+t_tile  load_tile(void *mlx, char *filename, t_game *game);
+
+/**/
+void    render_tile(t_game *game, t_tile tile, int x, int y);
+
+/**/
+void render_game(t_game *game);
 
 /**/
 int     key_press(int keycode, t_game *game);
+
+/**/
+int     close_game(t_game *game); // or 'cleanup()'
+
+/**/
+void    end_game(t_game *game);
 
 #endif
