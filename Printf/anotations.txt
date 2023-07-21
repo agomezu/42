@@ -1,0 +1,10 @@
+MAKEFILE
+- No relink on header file (wrong INCL declaration)
+
+PROTECTION
+- Unmanaged cases where write fails (return values)
+- Needs more protection on this specific cases and leave the program
+
+FUNCTIONS
+- Maybe numeric functions (decimal, base...) can be more elegant.
+	-> (For example: join functions into one for a code reduction).
