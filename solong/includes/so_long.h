@@ -10,6 +10,7 @@
 
 /* Size of every sprite */
 #define TILE_SIZE 32 
+#define DELAY 100
 
 /* A simple structure that represents a point in 2D space */
 typedef struct s_point
@@ -18,7 +19,7 @@ typedef struct s_point
     int         y;
 }                   t_point;
 
-// Keycodes
+// Keycodes for keys and assets of the game logic 
 enum    e_keycode
 {
     KEY_W = 119,
@@ -26,6 +27,15 @@ enum    e_keycode
     KEY_S = 115,
     KEY_D = 100,
     KEY_ESC = 65307,
+};
+
+enum    e_assets
+{
+    PLAYER = 'P',
+    EXIT = 'E',
+    WALL = '1',
+    FLOOR = '0',
+    COLLEC = 'C',
 };
 
 typedef struct s_data
@@ -44,17 +54,38 @@ typedef struct s_player
     int     moves;              // Number of moves the player has made
 }               t_player;
 
+typedef struct s_anim
+{
+    void        **imgs;
+    char        **addrs;
+    int         frame_count;
+    int         current_frame;
+    int         delay;              // Delay between frames in animation
+    int         next_frame_time;    // The game time when the next should be
+    int         width;
+    int         height; 
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+}                   t_anim;
+
 typedef struct s_tile
 {
     void        *img;           // Image
     char        *addr;         // Image data
+    t_anim      anim;
     int         width;          // W of the image
     int         height;         // H of the image
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+    int         is_animated;
 }                   t_tile;
 
 /*  Game structure: stores all the necessary information about the game
  *  game state, including the map, the player's position, the number of
  *  collectables, etc. */
+
 typedef struct s_game
 {
     void        *mlx;
@@ -66,6 +97,8 @@ typedef struct s_game
     t_player    player;         // Player data (position, etc.)
     t_point     exit;
     int         collectibles;   // Number of collectibles left to colect
+    int         is_game_over;
+    int         time;           // Current game time
     struct {
         t_tile  wall;
         t_tile  floor;
@@ -83,6 +116,8 @@ typedef struct s_game
  *  field of the 't_game? accordingly. */
 int     read_map(char *filename, t_game *game);
 
+int     is_valid_map_character(char c);
+
 /*  my_mlx_pixel_put: ??? */
 void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
@@ -99,16 +134,22 @@ int     is_map_surrounded_by_walls(t_game *game);
 void    init_game(t_game *game);
 
 /**/
-t_tile  load_tile(void *mlx, char *filename, t_game *game);
+void    *load_xpm(void *mlx_ptr, char *path, int *width, int *height);
 
 /**/
 void    render_tile(t_game *game, t_tile tile, int x, int y);
 
 /**/
-void render_game(t_game *game);
+void    render_anim(t_game *game, t_anim *anim, int x, int y);
 
 /**/
-int     key_press(int keycode, t_game *game);
+void    render_game(t_game *game);
+
+/**/
+int     key_press(int key, t_game *game);
+
+/**/
+int     game_loop(t_game *game);
 
 /**/
 int     close_game(t_game *game); // or 'cleanup()'

@@ -92,6 +92,7 @@ char
 char
 	*get_next_line(int fd)
 {
+	printf("Entering GNL function original: ");
 	static char		*buffer = NULL;
 	char			*line;
 	int				bytes_read;
@@ -116,6 +117,7 @@ char
 		free(line);
 		return (0);
 	}
+	printf("%s\n", line);
 	return (line);
 }
 
