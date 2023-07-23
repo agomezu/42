@@ -10,7 +10,7 @@
 
 /* Size of every sprite */
 #define TILE_SIZE 32 
-#define DELAY 100
+#define TOTAL_TILES 5 
 
 /* A simple structure that represents a point in 2D space */
 typedef struct s_point
@@ -29,13 +29,22 @@ enum    e_keycode
     KEY_ESC = 65307,
 };
 
+enum    e_tiles
+{
+    PLAYER_TILE = 0,
+    COLLEC_TILE = 1,
+    WALL_TILE = 2,
+    FLOOR_TILE = 3,
+    EXIT_TILE = 4,
+};
+
 enum    e_assets
 {
     PLAYER = 'P',
-    EXIT = 'E',
+    COLLEC = 'C',
     WALL = '1',
     FLOOR = '0',
-    COLLEC = 'C',
+    EXIT = 'E',
 };
 
 typedef struct s_data
@@ -62,24 +71,32 @@ typedef struct s_anim
     int         current_frame;
     int         delay;              // Delay between frames in animation
     int         next_frame_time;    // The game time when the next should be
-    int         width;
-    int         height; 
     int         bits_per_pixel;
     int         line_length;
     int         endian;
+    int         width;
+    int         height;
 }                   t_anim;
+
+/* typedef struct s_enemy
+{
+    t_point     pos;
+    t_point     dir;
+    t_anim      anim;
+}                   t_enemy; */
 
 typedef struct s_tile
 {
+    void        *mlx;           // MiniLibX context
     void        *img;           // Image
-    char        *addr;         // Image data
-    t_anim      anim;
-    int         width;          // W of the image
-    int         height;         // H of the image
+    char        *addr;          // Image data
     int         bits_per_pixel;
     int         line_length;
     int         endian;
+    int         width;
+    int         height;
     int         is_animated;
+    t_anim      anim;
 }                   t_tile;
 
 /*  Game structure: stores all the necessary information about the game
@@ -99,13 +116,14 @@ typedef struct s_game
     int         collectibles;   // Number of collectibles left to colect
     int         is_game_over;
     int         time;           // Current game time
-    struct {
+    t_tile      tiles[TOTAL_TILES];
+    /* struct {
         t_tile  wall;
         t_tile  floor;
         t_tile  player;
         t_tile  collectible;
         t_tile  exit;
-    }               tiles;
+    }               tiles; */
 }                   t_game;
 
 /*  read_map: takes the filename of the map file and a pointer to a 't_game'

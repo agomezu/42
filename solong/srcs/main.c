@@ -1,32 +1,59 @@
 #include "../includes/so_long.h"
 
-// Need to check this
-int     close_game(t_game *game)
+int    close_game(t_game * game)
 {
     int     i;
+    int     j;
+    t_tile  *tile;
+    t_anim  *anim;
 
-    i = 0;
-    // Free the map
-    while (i < game->map_height && game->map[i])
+    if (game)
     {
-        free(game->map[i]);
-        i++;
+        if (game->win)
+            mlx_destroy_window(game->mlx, game->win);
+        // Free the map
+        if (game->map)
+        {
+            i = 0;
+            while (i < game->map_height)
+            {
+                if (game->map[i])
+                    free(game->map[i]);
+                i++;
+            }
+            free(game->map);
+        }
+        i = 0;
+        // Free the images and data addresses in the tiles animations
+        while (i < TOTAL_TILES)
+        {
+            tile = &game->tiles[i];
+            if (tile->is_animated)
+            {
+                anim = &tile->anim;
+                j = 0;
+                while (j < anim->frame_count)
+                {
+                    if (anim->imgs[j])
+                        mlx_destroy_image(tile->mlx, anim->imgs[j]);
+                    j++;
+                }   
+                free(anim->imgs);
+                free(anim->addrs);
+            }
+            else
+            {
+                if (tile->img)
+                    mlx_destroy_image(tile->mlx, tile->img);
+            }
+            i++;
+        }
     }
-    if (game->map != NULL)
-        free(game->map);
-    if (game->mlx != NULL && game->win != NULL)
-    {
-        mlx_destroy_image(game->mlx, game->tiles.wall.img);
-        mlx_destroy_image(game->mlx, game->tiles.floor.img);
-        mlx_destroy_image(game->mlx, game->tiles.player.img);
-        mlx_destroy_image(game->mlx, game->tiles.collectible.img);
-        mlx_destroy_image(game->mlx, game->tiles.exit.img);
-        mlx_destroy_window(game->mlx, game->win);
-        mlx_destroy_display(game->mlx);
-    }
+    printf("Exit\n");
     exit(0);
 }
 
+/* Logic of end_game with success */
 void    end_game(t_game *game)
 {
     char    message[10];
@@ -45,6 +72,7 @@ void    end_game(t_game *game)
     game->is_game_over = 1;
 }
 
+/* Main function of the game */
 int     main(int argc, char **argv)
 {
     t_game game = {0};

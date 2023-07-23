@@ -3,15 +3,15 @@
 t_tile  *get_tile_from_char(t_game *game, char c)
 {
     if (c == WALL)
-        return (&game->tiles.wall);
+        return (&game->tiles[WALL_TILE]);
     else if (c == COLLEC)
-        return (&game->tiles.collectible);
+        return (&game->tiles[COLLEC_TILE]);
     else if (c == EXIT)
-        return (&game->tiles.exit);
+        return (&game->tiles[EXIT_TILE]);
     else if (c == FLOOR)
-        return (&game->tiles.floor);
+        return (&game->tiles[FLOOR_TILE]);
     else if (c == PLAYER)
-        return (&game->tiles.player);
+        return (&game->tiles[FLOOR_TILE]);
     else
         return (NULL);
 }
@@ -48,5 +48,6 @@ int     game_loop(t_game *game)
     }
     game->time++;
     render_game(game);
+    usleep(100000);
     return (1);
 }

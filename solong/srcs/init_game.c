@@ -14,8 +14,23 @@ void    *load_xpm(void *mlx_ptr, char *path, int *width, int *height)
     return (img_ptr);
 }
 
+/* Init static tiles */
+int     init_tile(void *mlx_ptr, t_tile *tile, char *path)
+{
+    tile->mlx = mlx_ptr;
+    tile->img = load_xpm(mlx_ptr, path, &tile->width, &tile->height);
+    if (!tile->img)
+        return (0);
+    tile->addr = mlx_get_data_addr(tile->img, &tile->bits_per_pixel,
+                                    &tile->line_length, &tile->endian);
+    if (!tile->addr)
+        return (0);
+    tile->is_animated = 0;
+    return (1);
+}
+
 /* Init animated tiles */
-int     init_anim(void *mlx_ptr, t_anim *anim, char **paths, int frame_count)
+int     init_anim(t_tile *tile, t_anim *anim, char **paths, int frame_count)
 {
     int     i;
 
@@ -26,7 +41,7 @@ int     init_anim(void *mlx_ptr, t_anim *anim, char **paths, int frame_count)
     i = 0;
     while (i < frame_count)
     {
-        anim->imgs[i] = load_xpm(mlx_ptr, paths[i], &anim->width, &anim->height);
+        anim->imgs[i] = load_xpm(tile->mlx, paths[i], &anim->width, &anim->height);
         if (!anim->imgs[i])
             return (0);
         anim->addrs[i] = mlx_get_data_addr(anim->imgs[i], &anim->bits_per_pixel,
@@ -42,50 +57,65 @@ int     init_anim(void *mlx_ptr, t_anim *anim, char **paths, int frame_count)
     return (1);
 }
 
-/* Init static tiles */
-int     init_tile(void *mlx_ptr, t_tile *tile, char *path)
-{
-    tile->img = load_xpm(mlx_ptr, path, &tile->width, &tile->height);
-    if (!tile->img)
-        return (0);
-    tile->addr = mlx_get_data_addr(tile->img, &tile->bits_per_pixel,
-                                    &tile->line_length, &tile->endian);
-    if (!tile->addr)
-        return (0);
-    tile->is_animated = 0;
-    return (1);
-}
-
 /*************************************************************/
 
 int     init_tiles(t_game *game)
 {
-    char    *player_frames_path[5];
-    char    *collec_frames_path[4];
+    // Animted tiles paths
+    char    *player_anim_paths[5];
+    char    *collec_anim_paths[4];
+    // Static tiles paths
+    char    wall_path[17];
+    char    floor_path[18];
+    char    exit_path[17];
+    // Animated tiles frame count and index
+    int     player_anim_frame_count;
+    int     collec_anim_frame_count;
+    int     i;
 
-    player_frames_path[0] = "./imgs/player_1.xpm";
-    player_frames_path[1] = "./imgs/player_2.xpm";
-    player_frames_path[2] = "./imgs/player_3.xpm";
-    player_frames_path[3] = "./imgs/player_4.xpm";
-    player_frames_path[4] = "./imgs/player_5.xpm";
-    collec_frames_path[0] = "./imgs/collectible_1.xpm";
-    collec_frames_path[1] = "./imgs/collectible_2.xpm";
-    collec_frames_path[2] = "./imgs/collectible_3.xpm";
-    collec_frames_path[3] = "./imgs/collectible_4.xpm";
-    // Static tiles first
-    if (!init_tile(game->mlx, &game->tiles.wall, "./imgs/wall.xpm"))
-        return (0);
-    if (!init_tile(game->mlx, &game->tiles.floor, "./imgs/floor.xpm"))
-        return (0);
-    if (!init_tile(game->mlx, &game->tiles.exit, "./imgs/exit.xpm"))
-        return (0);
-    // Animted tiles second 
-    game->tiles.player.is_animated = 1;
-    game->tiles.collectible.is_animated = 1;
-    if (!init_anim(game->mlx, &game->tiles.player.anim, player_frames_path, 5))
-        return (0);
-    if (!init_anim(game->mlx, &game->tiles.collectible.anim, collec_frames_path, 4))
-        return (0);
+    // Defining paths and frame count
+    player_anim_paths[0] = "./imgs/player_1.xpm";
+    player_anim_paths[1] = "./imgs/player_2.xpm";
+    player_anim_paths[2] = "./imgs/player_3.xpm";
+    player_anim_paths[3] = "./imgs/player_4.xpm";
+    player_anim_paths[4] = "./imgs/player_5.xpm";
+    player_anim_frame_count = 5;
+    collec_anim_paths[0] = "./imgs/collectible_1.xpm";
+    collec_anim_paths[1] = "./imgs/collectible_2.xpm";
+    collec_anim_paths[2] = "./imgs/collectible_3.xpm";
+    collec_anim_paths[3] = "./imgs/collectible_4.xpm";
+    collec_anim_frame_count = 4;
+    ft_strlcpy(wall_path, "./imgs/wall.xpm", 17);
+    ft_strlcpy(floor_path, "./imgs/floor.xpm", 18);
+    ft_strlcpy(exit_path, "./imgs/exit.xpm", 17);
+    i = 0;
+    while (i < TOTAL_TILES)
+    {
+        if (i == PLAYER_TILE)
+        {
+            game->tiles[i].mlx = game->mlx;
+            if(!init_anim(&game->tiles[i], &game->tiles[i].anim, player_anim_paths, player_anim_frame_count))
+                return (0);
+            game->tiles[i].is_animated = 1;
+        }
+        if (i == COLLEC_TILE)
+        {
+            game->tiles[i].mlx = game->mlx;
+            if (!init_anim(&game->tiles[i], &game->tiles[i].anim, collec_anim_paths,collec_anim_frame_count))
+                return (0);
+            game->tiles[i].is_animated = 1;
+        }
+        if (i == WALL_TILE)
+            if (!init_tile(game->mlx, &game->tiles[i], wall_path))
+                return (0);
+        if (i == FLOOR_TILE)
+            if (!init_tile(game->mlx, &game->tiles[i], floor_path))
+                return (0);
+        if (i == EXIT_TILE)
+            if (!init_tile(game->mlx, &game->tiles[i], exit_path))
+                return (0);
+        i++;
+    }
     return (1);
 }
 

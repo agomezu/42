@@ -83,20 +83,19 @@ void    render_game(t_game *game)
             // Check double array of game->map and render accordingly
             tile_type = game->map[y][x];
             if (tile_type != EXIT)
-                render_tile(game, game->tiles.floor, x, y);
+                render_tile(game, game->tiles[FLOOR_TILE], x, y);
             if (tile_type == WALL)
-                render_tile(game, game->tiles.wall, x, y);
+                render_tile(game, game->tiles[WALL_TILE], x, y);
             if (tile_type == COLLEC)
-                render_anim(game, &game->tiles.collectible.anim, x, y);
+                render_anim(game, &game->tiles[COLLEC_TILE].anim, x, y);
             if (tile_type == EXIT)
-                render_tile(game, game->tiles.exit, x, y);
+                render_tile(game, game->tiles[EXIT_TILE], x, y);
             x++;
         }
         y++;
     }
     // Render the player separately at its current position
-    render_anim(game, &game->tiles.player.anim,
-                game->player.pos.x, game->player.pos.y);
+    render_anim(game, &game->tiles[PLAYER_TILE].anim, game->player.pos.x, game->player.pos.y);
     mlx_put_image_to_window(game->mlx, game->win, game->img_data.img, 0, 0);
     render_game_text(game);
 }

@@ -25,13 +25,13 @@ void    move_player(t_game *game, t_point direction)
         game->collectibles == 0) 
         end_game(game);
     // Render floor at old player position
-    render_tile(game, game->tiles.floor,
+    render_tile(game, game->tiles[FLOOR_TILE],
                 game->player.pos.x, game->player.pos.y); 
     // Update player's position
     game->player.pos = new_pos;
     game->player.moves++;
     // Render player at new position
-    render_anim(game, &game->tiles.player.anim,
+    render_anim(game, &game->tiles[PLAYER_TILE].anim,
                 game->player.pos.x, game->player.pos.y);
     render_game(game);
 }
