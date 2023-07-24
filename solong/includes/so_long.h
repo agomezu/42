@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 #include "minilibx_linux/mlx.h"
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
@@ -11,6 +12,8 @@
 /* Size of every sprite */
 #define TILE_SIZE 32 
 #define TOTAL_TILES 5 
+#define MIN_ENEMIES 1
+#define MAX_ENEMIES 30
 
 /* A simple structure that represents a point in 2D space */
 typedef struct s_point
@@ -78,12 +81,12 @@ typedef struct s_anim
     int         height;
 }                   t_anim;
 
-/* typedef struct s_enemy
+typedef struct s_enemy
 {
     t_point     pos;
     t_point     dir;
     t_anim      anim;
-}                   t_enemy; */
+}                   t_enemy;
 
 typedef struct s_tile
 {
@@ -113,6 +116,8 @@ typedef struct s_game
     t_data      img_data;       // Image data for rendering the game
     t_player    player;         // Player data (position, etc.)
     t_point     exit;
+    t_enemy     *enemies;
+    int         enemy_count;
     int         collectibles;   // Number of collectibles left to colect
     int         is_game_over;
     int         time;           // Current game time

@@ -61,33 +61,27 @@ int     init_anim(t_tile *tile, t_anim *anim, char **paths, int frame_count)
 
 int     init_tiles(t_game *game)
 {
-    // Animted tiles paths
-    char    *player_anim_paths[5];
+    char    *player_anim_paths[2];
     char    *collec_anim_paths[4];
-    // Static tiles paths
     char    wall_path[17];
     char    floor_path[18];
     char    exit_path[17];
-    // Animated tiles frame count and index
     int     player_anim_frame_count;
     int     collec_anim_frame_count;
     int     i;
 
     // Defining paths and frame count
-    player_anim_paths[0] = "./imgs/player_1.xpm";
-    player_anim_paths[1] = "./imgs/player_2.xpm";
-    player_anim_paths[2] = "./imgs/player_3.xpm";
-    player_anim_paths[3] = "./imgs/player_4.xpm";
-    player_anim_paths[4] = "./imgs/player_5.xpm";
-    player_anim_frame_count = 5;
+    player_anim_paths[0] = "./imgs/player_idle_1.xpm";
+    player_anim_paths[1] = "./imgs/player_idle_2.xpm";
     collec_anim_paths[0] = "./imgs/collectible_1.xpm";
     collec_anim_paths[1] = "./imgs/collectible_2.xpm";
     collec_anim_paths[2] = "./imgs/collectible_3.xpm";
     collec_anim_paths[3] = "./imgs/collectible_4.xpm";
-    collec_anim_frame_count = 4;
     ft_strlcpy(wall_path, "./imgs/wall.xpm", 17);
     ft_strlcpy(floor_path, "./imgs/floor.xpm", 18);
     ft_strlcpy(exit_path, "./imgs/exit.xpm", 17);
+    player_anim_frame_count = 2;
+    collec_anim_frame_count = 4;
     i = 0;
     while (i < TOTAL_TILES)
     {
@@ -98,22 +92,30 @@ int     init_tiles(t_game *game)
                 return (0);
             game->tiles[i].is_animated = 1;
         }
-        if (i == COLLEC_TILE)
+        else if (i == COLLEC_TILE)
         {
             game->tiles[i].mlx = game->mlx;
             if (!init_anim(&game->tiles[i], &game->tiles[i].anim, collec_anim_paths,collec_anim_frame_count))
                 return (0);
             game->tiles[i].is_animated = 1;
         }
-        if (i == WALL_TILE)
+        else if (i == WALL_TILE)
             if (!init_tile(game->mlx, &game->tiles[i], wall_path))
                 return (0);
-        if (i == FLOOR_TILE)
+        else if (i == FLOOR_TILE)
             if (!init_tile(game->mlx, &game->tiles[i], floor_path))
                 return (0);
-        if (i == EXIT_TILE)
+        else if (i == EXIT_TILE)
             if (!init_tile(game->mlx, &game->tiles[i], exit_path))
                 return (0);
+        i++;
+    }
+    game->enemy_count = (game->map_height * game->map_width) / 10;
+    game->enemies = malloc(sizeof(t_enemy) * game->enemy_count);
+    i = 0;
+    while (i < game->enemy_count)
+    {
+        
         i++;
     }
     return (1);
